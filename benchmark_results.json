@@ -1,0 +1,69 @@
+﻿PyTorch: 2.14.0+cpu
+Configured CPU Threads: 2 (Target 2 vCPU budget)
+Batch: 1, Runs: 100, Warmup: 10
+
+==============================================================================
+MODEL FOOTPRINT & SPECIFICATION
+==============================================================================
+| Metric               | Value    | Budget Check                  |
+|----------------------|----------|-------------------------------|
+| Model Parameters     | 257,541  |                               |
+| FP32 Serialized Size | 1.000 MB |                               |
+| INT8 Serialized Size | 0.578 MB | Γ£à <= 2.2 MB                  |
+| Threat Threshold     | 75.0%    | Calibrated for zero-trust FAR |
+
+==============================================================================
+CPU LATENCY ΓÇö 100 runs (per 1.5s chunk, 2 vCPU threads, batch=1)
+==============================================================================
+| Precision   |   Mean(ms) |   P50(ms) |   P90(ms) |   P95(ms) |   P99(ms) |   Min(ms) |   Max(ms) |   Chunks/s |
+|-------------|------------|-----------|-----------|-----------|-----------|-----------|-----------|------------|
+| FP32        |     188.9  |    179.18 |    227.15 |    234.95 |    267.38 |    160.32 |    293.11 |        5.3 |
+| INT8        |     205.72 |    198.84 |    235.88 |    249.61 |    299.99 |    173.67 |    302.64 |        4.9 |
+
+Latency Budget (<185ms @ P95): Γ¥î FAIL (INT8 P95 = 249.61 ms)
+==============================================================================
+
+KILL-SWITCH DECISION TEST (INT8 Quantized Model @ 75.0% Cutoff)
+  Low-energy input:   Threat=80.46%  ≡ƒÜ¿ TERMINATE CALL (Synthetic Spoof Detected)
+  High-energy input:  Threat=80.45%  ≡ƒÜ¿ TERMINATE CALL (Synthetic Spoof Detected)
+
+{
+  "environment": {
+    "torch_version": "2.14.0+cpu",
+    "configured_threads": 2,
+    "batch": 1
+  },
+  "footprint": {
+    "parameters": 257541,
+    "fp32_mb": 1.0,
+    "int8_mb": 0.578,
+    "size_budget_mb": 2.2,
+    "size_ok": true
+  },
+  "latency_int8_ms": {
+    "mean_ms": 205.716,
+    "median_ms": 198.843,
+    "p50_ms": 198.843,
+    "p90_ms": 235.88,
+    "p95_ms": 249.607,
+    "p99_ms": 299.986,
+    "min_ms": 173.671,
+    "max_ms": 302.638,
+    "std_ms": 26.146
+  },
+  "throughput_chunks_s": 4.9,
+  "latency_budget_ms": 185.0,
+  "latency_ok": false,
+  "decisions": {
+    "mitigation_threshold": "75.0%",
+    "healthy_threat_score": 80.46,
+    "healthy_decision": "\ud83d\udea8 TERMINATE CALL (Synthetic Spoof Detected)",
+    "noisy_threat_score": 80.45,
+    "noisy_decision": "\ud83d\udea8 TERMINATE CALL (Synthetic Spoof Detected)"
+  },
+  "verdict": {
+    "pass": false,
+    "size_ok": true,
+    "latency_ok": false
+  }
+}

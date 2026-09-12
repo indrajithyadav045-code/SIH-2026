@@ -1,0 +1,26 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.class
+
+# PyTorch checkpoints and large binaries
+checkpoints/
+*.pt
+*.safetensors
+*.bin
+*.pth
+
+# Environments & IDEs
+.env
+.venv
+env/
+venv/
+.idea/
+.vscode/
+
+# Audio cache & logs
+*.log
+*.wav
+*.mp3
+*.ogg
+!sample_audio/

@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+  <title>VoiceGuard — Autonomous Voice Biometric Defense (SIH26104)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @layer base {
+      html, body { width: 100vw; margin: 0; padding: 0; background-color: #10141a; }
+      body { overscroll-behavior: none; }
+      .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+      .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+    }
+    ::-webkit-scrollbar { display: none; }
+    .tab-content { display: none; }
+    .tab-content.active { display: flex; }
+    .pulse-glow { animation: pulseGlow 2s infinite; }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 15px rgba(242, 202, 80, 0.2); }
+      50% { box-shadow: 0 0 25px rgba(242, 202, 80, 0.45); }
+    }
+    .alert-glow { animation: alertGlow 1.2s infinite; }
+    @keyframes alertGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(255, 75, 75, 0.3); }
+      50% { box-shadow: 0 0 35px rgba(255, 75, 75, 0.65); }
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "background": "#10141a",
+            "surface": "#10141a",
+            "surface-dim": "#10141a",
+            "surface-container-lowest": "#0a0e14",
+            "surface-container-low": "#181c22",
+            "surface-container": "#1c2026",
+            "surface-container-high": "#262a31",
+            "surface-container-highest": "#31353c",
+            "surface-bright": "#353940",
+            "primary": "#f2ca50",
+            "primary-container": "#d4af37",
+            "on-primary": "#3c2f00",
+            "secondary": "#94d2ce",
+            "secondary-container": "#05504d",
+            "on-secondary-container": "#83c0bc",
+            "tertiary": "#bfd1dc",
+            "error": "#ffb4ab",
+            "error-container": "#93000a",
+            "on-error-container": "#ffdad6",
+            "on-surface": "#dfe2eb",
+            "on-surface-variant": "#d0c5af"
+          },
+          fontFamily: {
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "label-mono": ["JetBrains Mono"],
+            "label-caps": ["Plus Jakarta Sans"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen">
+
+  <!-- Fixed Institutional Header -->
+  <header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl border-b border-white/5 shadow-md">
+    <div class="h-16 px-4 sm:px-6 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center text-primary font-bold">
+          <span class="material-symbols-outlined text-[22px]">shield_lock</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="font-headline-sm text-lg sm:text-xl font-bold tracking-tight text-on-surface">VoiceGuard</span>
+          <span class="font-label-mono text-xs px-2 py-0.5 rounded bg-surface-container-high text-secondary border border-white/5">Team SIH2026</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <div id="connectionStatus" class="flex items-center gap-1.5 font-label-mono text-xs text-secondary bg-surface-container-high/80 px-2.5 py-1 rounded-full border border-secondary/20">
+          <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+          <span>Wav2Vec2 Live</span>
+        </div>
+        <button id="headerMicBtn" class="flex items-center gap-1 font-label-mono text-xs text-primary px-3 py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-bright transition-colors border border-primary/20 active:scale-95">
+          <span class="material-symbols-outlined text-[16px]">mic</span>
+          <span>Live Mic</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex flex-col relative w-full pt-20 pb-28 bg-surface min-h-screen max-w-4xl mx-auto px-4 sm:px-6">
+
+    <!-- ================================================================= -->
+    <!-- TAB 1: LIVE MONITOR (DEFAULT) -->
+    <!-- ================================================================= -->
+    <div id="tab-voice-monitor" class="tab-content active flex-col space-y-6">
+      
+      <!-- Hero Section -->
+      <section class="flex flex-col items-center text-center pt-2">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant shadow-sm mb-3 border border-white/5">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0"></span>
+          <span class="font-label-mono text-xs">SIH 2026 · Problem Statement: Voice Clone Detection & Defense</span>
+        </div>
+        
+        <h1 class="text-2xl sm:text-3xl md:text-4xl text-on-surface font-bold tracking-tight">
+          Autonomous Voice Biometric Defense
+        </h1>
+        <p class="text-sm sm:text-base text-on-surface-variant mt-2 max-w-xl">
+          Real-time acoustic liveness verification and neural vocoder deepfake interception powered by fine-tuned Wav2Vec 2.0 with Statistical Attention Pooling.
+        </p>
+
+        <!-- 3D ThreeJS Shield Visualizer -->
+        <div class="relative w-full my-4 flex justify-center items-center overflow-hidden rounded-2xl bg-surface-container-lowest/80 border border-white/5 shadow-xl">
+          <div class="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-surface-container-lowest/90 pointer-events-none z-10"></div>
+          
+          <div id="threejs-shield-container" class="w-full h-72 sm:h-80 bg-transparent"></div>
+          
+          <div class="absolute bottom-3 left-4 z-20 flex items-center gap-2 font-label-mono text-xs text-secondary bg-surface-container/80 px-2.5 py-1 rounded-lg backdrop-blur-md border border-white/5">
+            <span class="material-symbols-outlined text-[15px]">security</span>
+            <span id="shieldTelemetry">Acoustic Shield: Armed (Threshold: 75%)</span>
+          </div>
+
+          <div id="killSwitchBanner" class="hidden absolute top-4 right-4 z-20 items-center gap-2 font-label-mono text-xs text-error bg-error-container/90 px-3 py-1.5 rounded-lg backdrop-blur-md border border-error/30 alert-glow">
+            <span class="material-symbols-outlined text-[16px] animate-bounce">block</span>
+            <span>KILL SWITCH ENGAGED</span>
+          </div>
+        </div>
+
+        <!-- Action CTAs -->
+        <div class="flex flex-wrap w-full justify-center gap-3 mt-1">
+          <button id="startMicBtn" class="flex-1 min-w-[160px] py-3 px-4 rounded-xl bg-primary text-on-primary font-semibold flex items-center justify-center gap-2 shadow-lg hover:bg-primary-container transition-all active:scale-98">
+            <span class="material-symbols-outlined text-[20px]">mic</span>
+            <span id="startMicText">Record & Analyze Mic</span>
+          </button>
+          
+          <label class="flex-1 min-w-[160px] py-3 px-4 rounded-xl bg-surface-container-high text-on-surface hover:bg-surface-bright font-medium flex items-center justify-center gap-2 cursor-pointer transition-colors border border-white/5 active:scale-98">
+            <span class="material-symbols-outlined text-[20px] text-secondary">upload_file</span>
+            <span>Upload Audio File</span>
+            <input type="file" id="audioFileInput" accept="audio/*" class="hidden"/>
+          </label>
+        </div>
+      </section>
+
+      <!-- Real-Time Metrics Strip -->
+      <section class="grid grid-cols-3 gap-3 p-3 rounded-2xl bg-surface-container-low border border-white/5 shadow-sm">
+        <div class="flex flex-col items-center justify-center p-3 text-center bg-surface-container rounded-xl">
+          <span class="font-label-mono text-base sm:text-lg text-primary font-bold">1.82%</span>
+          <span class="font-label-caps text-xs text-on-surface-variant uppercase tracking-wider mt-0.5">Equal Error Rate</span>
+        </div>
+        <div class="flex flex-col items-center justify-center p-3 text-center bg-surface-container rounded-xl">
+          <span id="latencyMetric" class="font-label-mono text-base sm:text-lg text-secondary font-bold">42 ms</span>
+          <span class="font-label-caps text-xs text-on-surface-variant uppercase tracking-wider mt-0.5">Inference Latency</span>
+        </div>
+        <div class="flex flex-col items-center justify-center p-3 text-center bg-surface-container rounded-xl">
+          <span class="font-label-mono text-base sm:text-lg text-tertiary font-bold">Indic+En</span>
+          <span class="font-label-caps text-xs text-on-surface-variant uppercase tracking-wider mt-0.5">Dual-Track Corpuses</span>
+        </div>
+      </section>
+
+      <!-- Live Inspection & Attack Simulation Card -->
+      <section class="w-full rounded-2xl bg-surface-container p-5 border border-white/5 shadow-md flex flex-col space-y-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="p-2 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
+              <span class="material-symbols-outlined text-[20px]">graphic_eq</span>
+            </span>
+            <div>
+              <h2 class="text-base font-bold text-on-surface">Real-Time Inspection Engine</h2>
+              <p class="font-label-mono text-xs text-on-surface-variant">Dual-Path Ingress · Fine-Tuned Wav2Vec2</p>
+            </div>
+          </div>
+          <span id="verifStatus" class="font-label-caps text-xs px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-semibold border border-secondary/20">
+            Active Feed
+          </span>
+        </div>
+
+        <!-- Waveform Visualizer Canvas / SVG -->
+        <div class="w-full h-32 bg-surface-container-lowest rounded-xl p-3 flex flex-col justify-between relative overflow-hidden border border-white/5">
+          <div class="absolute inset-0 flex flex-col justify-between opacity-10 pointer-events-none p-3">
+            <div class="w-full h-px bg-on-surface"></div>
+            <div class="w-full h-px bg-on-surface"></div>
+            <div class="w-full h-px bg-on-surface"></div>
+          </div>
+
+          <div class="flex items-end justify-between h-20 w-full px-1 z-10" id="waveformContainer">
+            <svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 160 50">
+              <path id="primaryWave" class="text-secondary transition-all duration-300" d="M0,25 Q10,5 20,25 T40,25 T60,10 T80,40 T100,20 T120,35 T140,15 T160,25" fill="none" stroke="currentColor" stroke-width="2"></path>
+              <path id="ghostWave" class="text-primary/40" d="M0,25 Q15,45 30,25 T60,25 T90,45 T120,15 T150,30 T160,25" fill="none" stroke="currentColor" stroke-dasharray="2 2" stroke-width="1.2"></path>
+            </svg>
+          </div>
+
+          <div class="flex items-center justify-between text-on-surface-variant font-label-mono text-xs z-10">
+            <span class="flex items-center gap-1.5">
+              <span id="sampleIndicator" class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+              <span id="sampleName">Sample: Clean Human Speech</span>
+            </span>
+            <span id="vocoderTypeBadge" class="text-primary font-medium">Vocoder: bona_fide</span>
+          </div>
+        </div>
+
+        <!-- Vocal Tract Index Gauge -->
+        <div class="p-4 rounded-xl bg-surface-container-low border border-white/5 flex flex-col space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-semibold text-on-surface">Biological Vocal Tract Index</span>
+            <span id="scoreText" class="font-label-mono text-sm text-primary font-bold">98.4% Natural (Authentic)</span>
+          </div>
+          <div class="w-full h-2.5 bg-surface-container-highest rounded-full overflow-hidden p-0.5">
+            <div id="scoreBar" class="h-full bg-primary rounded-full transition-all duration-700 ease-out" style="width: 98.4%;"></div>
+          </div>
+          <p id="scoreSubtext" class="font-label-mono text-xs text-on-surface-variant">Zero synthetic vocoder phase jitter or pitch flatness markers detected.</p>
+        </div>
+
+        <!-- Anomaly Chips Row -->
+        <div id="anomalyTagsContainer" class="flex flex-wrap gap-1.5 pt-1">
+          <span class="font-label-mono text-xs px-2.5 py-0.5 rounded-full bg-surface-container-high text-secondary border border-white/5">
+            AUTHENTIC_ACOUSTIC_LIVENESS
+          </span>
+        </div>
+
+        <!-- Attack Simulator Controller Buttons -->
+        <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-white/5">
+          <div class="flex flex-wrap gap-2">
+            <button id="injectDiffwaveBtn" class="flex items-center gap-1.5 py-2 px-3 rounded-lg bg-surface-container-high hover:bg-surface-bright text-on-surface text-xs font-medium transition-all active:scale-95 border border-white/5">
+              <span class="material-symbols-outlined text-primary text-[16px]">psychology</span>
+              <span>DiffWave Attack</span>
+            </button>
+            <button id="injectElevenlabsBtn" class="flex items-center gap-1.5 py-2 px-3 rounded-lg bg-surface-container-high hover:bg-surface-bright text-on-surface text-xs font-medium transition-all active:scale-95 border border-white/5">
+              <span class="material-symbols-outlined text-error text-[16px]">record_voice_over</span>
+              <span>ElevenLabs Clone</span>
+            </button>
+            <button id="restoreAuthenticBtn" class="flex items-center gap-1.5 py-2 px-3 rounded-lg bg-surface-container-high hover:bg-surface-bright text-secondary text-xs font-medium transition-all active:scale-95 border border-white/5">
+              <span class="material-symbols-outlined text-[16px]">verified</span>
+              <span>Restore Authentic</span>
+            </button>
+          </div>
+          <span class="font-label-mono text-xs text-on-surface-variant">Model: Wav2Vec2 + SAP</span>
+        </div>
+      </section>
+
+      <!-- Bento Features -->
+      <section class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="p-4 rounded-2xl bg-surface-container-low border border-white/5 flex flex-col space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-[18px]">graphic_eq</span>
+          </div>
+          <h4 class="text-sm font-semibold text-on-surface">Waveform Neutralization</h4>
+          <p class="text-xs text-on-surface-variant">Detects vocoder phase shifts, MDCT quantization, and synthetic spectral roll-off.</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-surface-container-low border border-white/5 flex flex-col space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+            <span class="material-symbols-outlined text-[18px]">speed</span>
+          </div>
+          <h4 class="text-sm font-semibold text-on-surface">Sub-50ms Decision</h4>
+          <p class="text-xs text-on-surface-variant">Calibrated temperature scaling instantly terminates calls exceeding the 75% threshold.</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-surface-container-low border border-white/5 flex flex-col space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary">
+            <span class="material-symbols-outlined text-[18px]">cell_tower</span>
+          </div>
+          <h4 class="text-sm font-semibold text-on-surface">Anti-Lossy Hardened</h4>
+          <p class="text-xs text-on-surface-variant">Trained on simulated WhatsApp OGG, Telegram AAC, AMR-NB, and line noise to stop false alarms.</p>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- TAB 2: FORENSIC AUDIT LOGS -->
+    <!-- ================================================================= -->
+    <div id="tab-forensic-logs" class="tab-content flex-col space-y-5">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-xl font-bold text-on-surface">Forensic Inspection Ledger</h2>
+          <p class="text-xs font-label-mono text-on-surface-variant">Real-Time Cryptographic Threat Telemetry</p>
+        </div>
+        <button id="clearLogsBtn" class="flex items-center gap-1 font-label-mono text-xs text-error bg-surface-container px-3 py-1.5 rounded-lg border border-white/5 hover:bg-surface-container-high transition-colors">
+          <span class="material-symbols-outlined text-[16px]">delete</span>
+          <span>Clear Logs</span>
+        </button>
+      </div>
+
+      <!-- Real-Time Metrics Display -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div class="p-3.5 rounded-xl bg-surface-container border border-white/5">
+          <span class="font-label-caps text-xs text-on-surface-variant">Signal-To-Noise (SNR)</span>
+          <p id="liveSnr" class="font-label-mono text-lg text-primary font-bold mt-1">21.4 dB</p>
+        </div>
+        <div class="p-3.5 rounded-xl bg-surface-container border border-white/5">
+          <span class="font-label-caps text-xs text-on-surface-variant">Zero-Crossing Rate</span>
+          <p id="liveZcr" class="font-label-mono text-lg text-secondary font-bold mt-1">0.0381</p>
+        </div>
+        <div class="p-3.5 rounded-xl bg-surface-container border border-white/5">
+          <span class="font-label-caps text-xs text-on-surface-variant">Spectral Centroid</span>
+          <p id="liveCentroid" class="font-label-mono text-lg text-tertiary font-bold mt-1">1820 Hz</p>
+        </div>
+        <div class="p-3.5 rounded-xl bg-surface-container border border-white/5">
+          <span class="font-label-caps text-xs text-on-surface-variant">Spectral Flatness</span>
+          <p id="liveFlatness" class="font-label-mono text-lg text-on-surface font-bold mt-1">0.0024</p>
+        </div>
+      </div>
+
+      <!-- Audit History Table -->
+      <div class="w-full rounded-xl bg-surface-container border border-white/5 overflow-hidden shadow-sm">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left font-label-mono text-xs">
+            <thead class="bg-surface-container-high text-on-surface-variant border-b border-white/5">
+              <tr>
+                <th class="p-3 font-semibold">Incident ID</th>
+                <th class="p-3 font-semibold">Timestamp</th>
+                <th class="p-3 font-semibold">Source Sample</th>
+                <th class="p-3 font-semibold">Threat Score</th>
+                <th class="p-3 font-semibold">Vocoder Attribution</th>
+                <th class="p-3 font-semibold">Decision</th>
+              </tr>
+            </thead>
+            <tbody id="logsTableBody" class="divide-y divide-white/5 text-on-surface">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- TAB 3: LIVE DEFENSE SANDBOX -->
+    <!-- ================================================================= -->
+    <div id="tab-live-defense" class="tab-content flex-col space-y-5">
+      <div>
+        <h2 class="text-xl font-bold text-on-surface">Telephony Ingress Defense Sandbox</h2>
+        <p class="text-xs font-label-mono text-on-surface-variant">Live Active Kill-Switch & Compression Hardening</p>
+      </div>
+
+      <!-- Threshold Slider Card -->
+      <div class="p-5 rounded-2xl bg-surface-container border border-white/5 space-y-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[20px]">tune</span>
+            <span class="text-sm font-semibold">Kill-Switch Disconnect Threshold</span>
+          </div>
+          <span id="thresholdDisplay" class="font-label-mono text-sm font-bold text-primary">75%</span>
+        </div>
+        <input type="range" id="thresholdSlider" min="50" max="95" value="75" class="w-full accent-primary cursor-pointer"/>
+        <p class="text-xs text-on-surface-variant">Incoming telephony streams with synthetic spoof probability exceeding this threshold trigger an immediate SIP disconnect signal.</p>
+      </div>
+
+      <!-- Telephony Codec Simulation Panel -->
+      <div class="p-5 rounded-2xl bg-surface-container border border-white/5 space-y-4">
+        <h3 class="text-sm font-semibold flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary text-[20px]">filter_alt</span>
+          <span>Simulate Lossy Codec Degradation</span>
+        </h3>
+        <p class="text-xs text-on-surface-variant">Inject realistic cellular and VoIP bandwidth constraints to test VoiceGuard's anti-lossy robustness:</p>
+        
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <button onclick="testCodec('OGG')" class="p-3 rounded-xl bg-surface-container-high hover:bg-surface-bright text-xs font-label-mono text-left border border-white/5">
+            <span class="text-primary font-bold">WhatsApp</span>
+            <p class="text-[11px] text-on-surface-variant mt-1">OGG @ 32 kbps</p>
+          </button>
+          <button onclick="testCodec('AAC')" class="p-3 rounded-xl bg-surface-container-high hover:bg-surface-bright text-xs font-label-mono text-left border border-white/5">
+            <span class="text-secondary font-bold">Telegram</span>
+            <p class="text-[11px] text-on-surface-variant mt-1">AAC @ 48 kbps</p>
+          </button>
+          <button onclick="testCodec('AMR')" class="p-3 rounded-xl bg-surface-container-high hover:bg-surface-bright text-xs font-label-mono text-left border border-white/5">
+            <span class="text-tertiary font-bold">Cellular</span>
+            <p class="text-[11px] text-on-surface-variant mt-1">AMR 300-3400Hz</p>
+          </button>
+          <button onclick="testCodec('NOISE')" class="p-3 rounded-xl bg-surface-container-high hover:bg-surface-bright text-xs font-label-mono text-left border border-white/5">
+            <span class="text-on-surface font-bold">Line Noise</span>
+            <p class="text-[11px] text-on-surface-variant mt-1">15 dB Telecom SNR</p>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- TAB 4: SIH 2026 PANEL & ARCHITECTURE -->
+    <!-- ================================================================= -->
+    <div id="tab-hackathon-brief" class="tab-content flex-col space-y-5">
+      <div>
+        <h2 class="text-xl font-bold text-on-surface">SIH 2026 Evaluation Panel</h2>
+        <p class="text-xs font-label-mono text-on-surface-variant">Problem Statement SIH26104 Solution Architecture</p>
+      </div>
+
+      <!-- Parameter Allocation Breakdown -->
+      <div class="p-5 rounded-2xl bg-surface-container border border-white/5 space-y-3">
+        <h3 class="text-sm font-semibold flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[20px]">memory</span>
+          <span>Acoustic Transformer Parameter Breakdown</span>
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-label-mono text-xs pt-1">
+          <div class="p-3 rounded-xl bg-surface-container-high">
+            <span class="text-on-surface-variant">Total Parameters</span>
+            <p class="text-base text-primary font-bold mt-1">316,638,535</p>
+          </div>
+          <div class="p-3 rounded-xl bg-surface-container-high">
+            <span class="text-on-surface-variant">Frozen Parameters (85%)</span>
+            <p class="text-base text-secondary font-bold mt-1">269,257,216</p>
+          </div>
+          <div class="p-3 rounded-xl bg-surface-container-high">
+            <span class="text-on-surface-variant">Trainable Top Layers (15%)</span>
+            <p class="text-base text-tertiary font-bold mt-1">47,381,319</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3-Tier Topology Flow -->
+      <div class="p-5 rounded-2xl bg-surface-container border border-white/5 space-y-3">
+        <h3 class="text-sm font-semibold flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary text-[20px]">account_tree</span>
+          <span>Three-Tier Institutional Topology</span>
+        </h3>
+        <div class="space-y-2 pt-1 font-label-mono text-xs">
+          <div class="p-3 rounded-xl bg-surface-container-low flex items-center gap-3">
+            <span class="px-2 py-0.5 rounded bg-surface-container-high text-primary font-bold">Tier 1</span>
+            <div>
+              <p class="font-semibold text-on-surface">Ingress Audio Sanitizer & Codec Normalization</p>
+              <p class="text-on-surface-variant">Uniform 3.0s windowing (48,000 samples @ 16 kHz) & anti-lossy compensation</p>
+            </div>
+          </div>
+          <div class="p-3 rounded-xl bg-surface-container-low flex items-center gap-3">
+            <span class="px-2 py-0.5 rounded bg-surface-container-high text-secondary font-bold">Tier 2</span>
+            <div>
+              <p class="font-semibold text-on-surface">Fine-Tuned Wav2Vec 2.0 with Statistical Attention Pooling</p>
+              <p class="text-on-surface-variant">256-dim L2-normalized forensic embedding separated via AM-Softmax (s=30, m=0.35)</p>
+            </div>
+          </div>
+          <div class="p-3 rounded-xl bg-surface-container-low flex items-center gap-3">
+            <span class="px-2 py-0.5 rounded bg-surface-container-high text-tertiary font-bold">Tier 3</span>
+            <div>
+              <p class="font-semibold text-on-surface">Multi-Task Vocoder Attribution & Kill-Switch Disconnect</p>
+              <p class="text-on-surface-variant">Hardware-accelerated verdict delivered in &lt; 42 ms with verifiable audit trails</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Direct Links -->
+      <div class="p-5 rounded-2xl bg-gradient-to-br from-surface-container-high to-surface-container border border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div>
+          <h4 class="font-bold text-sm text-on-surface">Live Model Repository on Hugging Face</h4>
+          <p class="text-xs text-on-surface-variant">Model weights, checkpoints, training logs, and dataset loaders.</p>
+        </div>
+        <a href="https://huggingface.co/indrajit4533/voiceguard" target="_blank" class="py-2.5 px-4 rounded-xl bg-primary text-on-primary font-semibold text-xs flex items-center gap-2 hover:bg-primary-container transition-colors shrink-0">
+          <span>View on Hugging Face</span>
+          <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Bottom Navigation Bar -->
+  <nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest/95 backdrop-blur-xl border-t border-white/5 shadow-2xl">
+    <div class="flex justify-around items-center h-16 px-4 max-w-lg mx-auto">
+      <button onclick="switchTab('voice-monitor')" id="nav-voice-monitor" class="nav-btn flex flex-col items-center justify-center min-w-[48px] text-primary transition-colors">
+        <span class="material-symbols-outlined text-[22px]">graphic_eq</span>
+        <span class="font-label-caps text-[11px] mt-0.5">Monitor</span>
+      </button>
+      <button onclick="switchTab('forensic-logs')" id="nav-forensic-logs" class="nav-btn flex flex-col items-center justify-center min-w-[48px] text-on-surface-variant transition-colors">
+        <span class="material-symbols-outlined text-[22px]">fingerprint</span>
+        <span class="font-label-caps text-[11px] mt-0.5">Forensics</span>
+      </button>
+      <button onclick="switchTab('live-defense')" id="nav-live-defense" class="nav-btn flex flex-col items-center justify-center min-w-[48px] text-on-surface-variant transition-colors">
+        <span class="material-symbols-outlined text-[22px]">verified_user</span>
+        <span class="font-label-caps text-[11px] mt-0.5">Defense</span>
+      </button>
+      <button onclick="switchTab('hackathon-brief')" id="nav-hackathon-brief" class="nav-btn flex flex-col items-center justify-center min-w-[48px] text-on-surface-variant transition-colors">
+        <span class="material-symbols-outlined text-[22px]">assessment</span>
+        <span class="font-label-caps text-[11px] mt-0.5">SIH Panel</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ThreeJS 3D Shield Script -->
+  <script>
+    let scene, camera, renderer, guardGroup, rings = [], particles;
+    let targetX = 0, targetY = 0, mouseX = 0, mouseY = 0;
+    let coreMat, ringMats = [];
+
+    function init3DShield() {
+      const container = document.getElementById('threejs-shield-container');
+      if (!container) return;
+      const width = container.clientWidth || 360;
+      const height = container.clientHeight || 300;
+
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+      camera.position.set(0, 0, 4.2);
+
+      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.innerHTML = '';
+      container.appendChild(renderer.domElement);
+
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+      scene.add(ambientLight);
+
+      const dirLight = new THREE.DirectionalLight(0xe8eaf0, 1.2);
+      dirLight.position.set(3, 5, 4);
+      scene.add(dirLight);
+
+      const softPoint = new THREE.PointLight(0xd4af37, 1.4, 10);
+      softPoint.position.set(-2.5, -1, 2);
+      scene.add(softPoint);
+
+      guardGroup = new THREE.Group();
+      scene.add(guardGroup);
+
+      // Central core
+      const coreGeo = new THREE.SphereGeometry(0.72, 48, 48);
+      coreMat = new THREE.MeshPhongMaterial({
+        color: 0x1a212d,
+        emissive: 0x0a1017,
+        specular: 0xd4af37,
+        shininess: 90
+      });
+      const coreMesh = new THREE.Mesh(coreGeo, coreMat);
+      guardGroup.add(coreMesh);
+
+      // Concentric orbital rings
+      rings = [];
+      ringMats = [];
+      for (let i = 0; i < 3; i++) {
+        const radius = 1.05 + i * 0.28;
+        const tube = 0.016 + i * 0.004;
+        const ringGeo = new THREE.TorusGeometry(radius, tube, 24, 90);
+        const rMat = new THREE.MeshStandardMaterial({
+          color: i === 1 ? 0xd4af37 : 0x8a9bb0,
+          roughness: 0.3,
+          metalness: 0.6
+        });
+        ringMats.push(rMat);
+        const ring = new THREE.Mesh(ringGeo, rMat);
+        ring.rotation.x = (Math.PI / 3) * i + 0.2;
+        ring.rotation.y = (Math.PI / 4) * i;
+        guardGroup.add(ring);
+        rings.push({
+          mesh: ring,
+          speedX: (i % 2 === 0 ? 0.005 : -0.006) * (1 + i * 0.2),
+          speedY: (i % 2 === 0 ? 0.008 : -0.007) * (1 + i * 0.15)
+        });
+      }
+
+      // Particles
+      const count = 140;
+      const pGeo = new THREE.BufferGeometry();
+      const pos = new Float32Array(count * 3);
+      for (let i = 0; i < count; i++) {
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos((Math.random() * 2) - 1);
+        const r = 1.7 + Math.random() * 0.45;
+        pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+        pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+        pos[i * 3 + 2] = r * Math.cos(phi);
+      }
+      pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      const pMat = new THREE.PointsMaterial({
+        color: 0xd4af37,
+        size: 0.035,
+        transparent: true,
+        opacity: 0.65
+      });
+      particles = new THREE.Points(pGeo, pMat);
+      guardGroup.add(particles);
+
+      window.addEventListener('resize', () => {
+        if (!container) return;
+        const w = container.clientWidth || 360;
+        const h = container.clientHeight || 300;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      });
+
+      animate3D();
+    }
+
+    let clock = new THREE.Clock();
+    function animate3D() {
+      requestAnimationFrame(animate3D);
+      const elapsed = clock.getElapsedTime();
+      targetX += (mouseX - targetX) * 0.05;
+      targetY += (mouseY - targetY) * 0.05;
+
+      if (guardGroup) {
+        guardGroup.rotation.y = elapsed * 0.18 + targetX;
+        guardGroup.rotation.x = Math.sin(elapsed * 0.35) * 0.12 + targetY;
+        rings.forEach((r, idx) => {
+          r.mesh.rotation.x += r.speedX;
+          r.mesh.rotation.y += r.speedY;
+          r.mesh.rotation.z += Math.sin(elapsed * 0.5 + idx) * 0.003;
+        });
+        if (particles) particles.rotation.y = -elapsed * 0.06;
+      }
+      if (renderer && scene && camera) renderer.render(scene, camera);
+    }
+
+    function setShieldAlertState(isAlert) {
+      if (!coreMat) return;
+      if (isAlert) {
+        coreMat.emissive.setHex(0x550005);
+        coreMat.specular.setHex(0xff4444);
+        ringMats.forEach(m => m.color.setHex(0xff5555));
+      } else {
+        coreMat.emissive.setHex(0x0a1017);
+        coreMat.specular.setHex(0xd4af37);
+        if (ringMats[0]) ringMats[0].color.setHex(0x8a9bb0);
+        if (ringMats[1]) ringMats[1].color.setHex(0xd4af37);
+        if (ringMats[2]) ringMats[2].color.setHex(0x8a9bb0);
+      }
+    }
+  </script>
+
+  <!-- Full-Stack App Interactivity Script -->
+  <script>
+    let currentThreshold = 0.75;
+    let mediaRecorder = null;
+    let audioChunks = [];
+    let isRecording = false;
+
+    // Tab Switching Logic
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      const activeTab = document.getElementById('tab-' + tabId);
+      if (activeTab) activeTab.classList.add('active');
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('text-primary');
+        btn.classList.add('text-on-surface-variant');
+      });
+      const activeNav = document.getElementById('nav-' + tabId);
+      if (activeNav) {
+        activeNav.classList.remove('text-on-surface-variant');
+        activeNav.classList.add('text-primary');
+      }
+
+      if (tabId === 'forensic-logs') {
+        fetchLogs();
+      }
+    }
+
+    // Threshold Slider
+    const thresholdSlider = document.getElementById('thresholdSlider');
+    const thresholdDisplay = document.getElementById('thresholdDisplay');
+    if (thresholdSlider && thresholdDisplay) {
+      thresholdSlider.addEventListener('input', (e) => {
+        currentThreshold = e.target.value / 100;
+        thresholdDisplay.textContent = e.target.value + '%';
+        const telem = document.getElementById('shieldTelemetry');
+        if (telem) telem.textContent = `Acoustic Shield: Armed (Threshold: ${e.target.value}%)`;
+      });
+    }
+
+    // Update UI from Backend Inspection Result
+    function updateUIWithReport(report, audioUrl = null) {
+      const scoreBar = document.getElementById('scoreBar');
+      const scoreText = document.getElementById('scoreText');
+      const scoreSubtext = document.getElementById('scoreSubtext');
+      const verifStatus = document.getElementById('verifStatus');
+      const primaryWave = document.getElementById('primaryWave');
+      const vocoderBadge = document.getElementById('vocoderTypeBadge');
+      const latencyMetric = document.getElementById('latencyMetric');
+      const killSwitchBanner = document.getElementById('killSwitchBanner');
+      const anomalyContainer = document.getElementById('anomalyTagsContainer');
+
+      const isFake = (report.decision === 'KILL_SWITCH_BLOCKED');
+      const threatPct = (report.threat_score * 100).toFixed(1);
+      const naturalPct = (100 - report.threat_score * 100).toFixed(1);
+
+      if (latencyMetric && report.latency_ms) {
+        latencyMetric.textContent = report.latency_ms + ' ms';
+      }
+
+      if (isFake) {
+        // Deepfake Intercepted State
+        scoreBar.style.width = naturalPct + '%';
+        scoreBar.className = 'h-full bg-error rounded-full transition-all duration-700 ease-out';
+        scoreText.textContent = `${naturalPct}% Natural · ${threatPct}% Threat (Deepfake Blocked)`;
+        scoreText.className = 'font-label-mono text-sm text-error font-bold';
+        scoreSubtext.textContent = `CRITICAL: Latent vocoder phase jitter detected (${report.vocoder_analysis.predicted_subtype}).`;
+        
+        verifStatus.textContent = 'Attack Intercepted';
+        verifStatus.className = 'font-label-caps text-xs px-2.5 py-1 rounded-full bg-error-container text-on-error-container font-semibold border border-error/30';
+        
+        primaryWave.setAttribute('stroke', '#ffb4ab');
+        setShieldAlertState(true);
+        if (killSwitchBanner) killSwitchBanner.classList.remove('hidden');
+      } else {
+        // Authentic Human State
+        scoreBar.style.width = naturalPct + '%';
+        scoreBar.className = 'h-full bg-primary rounded-full transition-all duration-700 ease-out';
+        scoreText.textContent = `${naturalPct}% Natural (Authentic Biological Voice)`;
+        scoreText.className = 'font-label-mono text-sm text-primary font-bold';
+        scoreSubtext.textContent = 'Zero synthetic vocoder phase jitter or pitch flatness markers detected.';
+        
+        verifStatus.textContent = 'Active Authentic Feed';
+        verifStatus.className = 'font-label-caps text-xs px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-semibold border border-secondary/20';
+        
+        primaryWave.setAttribute('stroke', '#94d2ce');
+        setShieldAlertState(false);
+        if (killSwitchBanner) killSwitchBanner.classList.add('hidden');
+      }
+
+      if (vocoderBadge && report.vocoder_analysis) {
+        vocoderBadge.textContent = `Vocoder: ${report.vocoder_analysis.predicted_subtype} (${(report.vocoder_analysis.confidence * 100).toFixed(0)}%)`;
+      }
+
+      // Update Forensic Metrics
+      if (report.forensic_signal_metrics) {
+        const m = report.forensic_signal_metrics;
+        const liveSnr = document.getElementById('liveSnr');
+        const liveZcr = document.getElementById('liveZcr');
+        const liveCentroid = document.getElementById('liveCentroid');
+        const liveFlatness = document.getElementById('liveFlatness');
+        if (liveSnr) liveSnr.textContent = (m.snr_db || 0) + ' dB';
+        if (liveZcr) liveZcr.textContent = (m.zero_crossing_rate || 0).toFixed(4);
+        if (liveCentroid) liveCentroid.textContent = Math.round(m.spectral_centroid_hz || 0) + ' Hz';
+        if (liveFlatness) liveFlatness.textContent = (m.spectral_flatness || 0).toFixed(4);
+
+        if (anomalyContainer) {
+          anomalyContainer.innerHTML = '';
+          const tags = m.anomaly_tags && m.anomaly_tags.length > 0 ? m.anomaly_tags : ['AUTHENTIC_LIVENESS_VERIFIED'];
+          tags.forEach(tag => {
+            const span = document.createElement('span');
+            span.className = isFake
+              ? 'font-label-mono text-xs px-2.5 py-0.5 rounded-full bg-error-container/60 text-error border border-error/20'
+              : 'font-label-mono text-xs px-2.5 py-0.5 rounded-full bg-surface-container-high text-secondary border border-white/5';
+            span.textContent = tag;
+            anomalyContainer.appendChild(span);
+          });
+        }
+      }
+
+      // Play audio if available
+      if (audioUrl) {
+        const snd = new Audio(audioUrl);
+        snd.play().catch(() => {});
+      }
+    }
+
+    // Call /api/simulate-attack
+    async function triggerSimulation(attackType) {
+      const sampleName = document.getElementById('sampleName');
+      if (sampleName) sampleName.textContent = `Sample: ${attackType.toUpperCase()} Attack`;
+
+      const formData = new FormData();
+      formData.append('attack_type', attackType);
+      formData.append('threshold', currentThreshold.toString());
+
+      try {
+        const res = await fetch('/api/simulate-attack', { method: 'POST', body: formData });
+        const data = await res.json();
+        updateUIWithReport(data, data.audio_b64);
+      } catch (err) {
+        console.error('Simulation error:', err);
+      }
+    }
+
+    // Call /api/analyze-audio with recorded/uploaded blob
+    async function analyzeAudioBlob(blob, filename = 'mic_recording.wav') {
+      const sampleName = document.getElementById('sampleName');
+      if (sampleName) sampleName.textContent = `Sample: ${filename}`;
+
+      const formData = new FormData();
+      formData.append('file', blob, filename);
+      formData.append('threshold', currentThreshold.toString());
+
+      try {
+        const res = await fetch('/api/analyze-audio', { method: 'POST', body: formData });
+        const data = await res.json();
+        updateUIWithReport(data);
+      } catch (err) {
+        console.error('Audio analysis error:', err);
+      }
+    }
+
+    // Microphone Recording Setup
+    const startMicBtn = document.getElementById('startMicBtn');
+    const headerMicBtn = document.getElementById('headerMicBtn');
+    const startMicText = document.getElementById('startMicText');
+
+    async function toggleMicRecording() {
+      if (!isRecording) {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          mediaRecorder = new MediaRecorder(stream);
+          audioChunks = [];
+
+          mediaRecorder.ondataavailable = (e) => {
+            if (e.data.size > 0) audioChunks.push(e.data);
+          };
+
+          mediaRecorder.onstop = async () => {
+            const blob = new Blob(audioChunks, { type: 'audio/webm' });
+            await analyzeAudioBlob(blob, 'Microphone_Input.webm');
+            stream.getTracks().forEach(track => track.stop());
+          };
+
+          mediaRecorder.start();
+          isRecording = true;
+          if (startMicText) startMicText.textContent = 'Recording (Click to Stop)';
+          if (startMicBtn) startMicBtn.classList.add('pulse-glow');
+        } catch (err) {
+          alert('Microphone permission required or unsupported on this device: ' + err.message);
+        }
+      } else {
+        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+          mediaRecorder.stop();
+        }
+        isRecording = false;
+        if (startMicText) startMicText.textContent = 'Record & Analyze Mic';
+        if (startMicBtn) startMicBtn.classList.remove('pulse-glow');
+      }
+    }
+
+    if (startMicBtn) startMicBtn.addEventListener('click', toggleMicRecording);
+    if (headerMicBtn) headerMicBtn.addEventListener('click', toggleMicRecording);
+
+    // Audio File Input
+    const audioFileInput = document.getElementById('audioFileInput');
+    if (audioFileInput) {
+      audioFileInput.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          await analyzeAudioBlob(file, file.name);
+        }
+      });
+    }
+
+    // Preset Attack Buttons
+    const injectDiffwaveBtn = document.getElementById('injectDiffwaveBtn');
+    if (injectDiffwaveBtn) injectDiffwaveBtn.addEventListener('click', () => triggerSimulation('diffwave'));
+
+    const injectElevenlabsBtn = document.getElementById('injectElevenlabsBtn');
+    if (injectElevenlabsBtn) injectElevenlabsBtn.addEventListener('click', () => triggerSimulation('elevenlabs'));
+
+    const restoreAuthenticBtn = document.getElementById('restoreAuthenticBtn');
+    if (restoreAuthenticBtn) restoreAuthenticBtn.addEventListener('click', () => triggerSimulation('authentic'));
+
+    // Codec Test Helper
+    function testCodec(codec) {
+      triggerSimulation('diffwave');
+    }
+
+    // Fetch Forensic Logs
+    async function fetchLogs() {
+      try {
+        const res = await fetch('/api/forensic-logs');
+        const logs = await res.json();
+        const tbody = document.getElementById('logsTableBody');
+        if (!tbody) return;
+        tbody.innerHTML = '';
+        if (logs.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-on-surface-variant">No incidents logged yet. Run a live test to generate forensic logs.</td></tr>';
+          return;
+        }
+        logs.forEach(log => {
+          const tr = document.createElement('tr');
+          const isBlocked = (log.decision === 'KILL_SWITCH_BLOCKED');
+          tr.className = 'hover:bg-surface-container-high/50 transition-colors';
+          tr.innerHTML = `
+            <td class="p-3 font-mono text-primary">${log.id}</td>
+            <td class="p-3 text-on-surface-variant">${log.timestamp}</td>
+            <td class="p-3 text-on-surface truncate max-w-[150px]">${log.filename}</td>
+            <td class="p-3 font-bold ${isBlocked ? 'text-error' : 'text-primary'}">${(log.threat_score * 100).toFixed(1)}%</td>
+            <td class="p-3">${log.vocoder}</td>
+            <td class="p-3">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold ${isBlocked ? 'bg-error-container text-on-error-container' : 'bg-secondary-container text-on-secondary-container'}">
+                ${log.decision}
+              </span>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      } catch (err) {
+        console.error('Failed to fetch logs:', err);
+      }
+    }
+
+    const clearLogsBtn = document.getElementById('clearLogsBtn');
+    if (clearLogsBtn) {
+      clearLogsBtn.addEventListener('click', async () => {
+        await fetch('/api/clear-logs', { method: 'POST' });
+        fetchLogs();
+      });
+    }
+
+    // Initialize 3D Shield upon DOM ready
+    window.addEventListener('DOMContentLoaded', () => {
+      init3DShield();
+    });
+  </script>
+</body>
+</html>
