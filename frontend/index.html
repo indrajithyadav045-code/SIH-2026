@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoiceGuard — AI Voice Cloning & Impersonation Prevention Gateway (SIH26104)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <!-- Top Cyber Navigation Bar -->
+    <header class="cyber-header">
+        <div class="header-left">
+            <div class="logo-group">
+                <div class="logo-shield">
+                    <span class="material-symbols-outlined logo-icon">shield_lock</span>
+                    <span class="pulse-ring"></span>
+                </div>
+                <div class="logo-meta">
+                    <div class="brand-title">VOICEGUARD <span class="badge-sih">SIH 26104</span></div>
+                    <div class="brand-sub">Voice Integrity & Financial Fraud Prevention Gateway</div>
+                </div>
+            </div>
+        </div>
+        <div class="header-stats">
+            <div class="stat-pill">
+                <span class="stat-dot dot-online"></span>
+                <span class="stat-label">BACKBONE:</span>
+                <span class="stat-val">Wav2Vec 2.0 XLSR-53</span>
+            </div>
+            <div class="stat-pill">
+                <span class="stat-label">PRIVACY:</span>
+                <span class="stat-val text-emerald">Zero Audio Retention</span>
+            </div>
+            <div class="stat-pill">
+                <span class="stat-label">DECISIONING:</span>
+                <span class="stat-val text-cyan">Multi-Factor Risk (0-100)</span>
+            </div>
+            <div class="stat-pill" id="live-clock">--:--:-- UTC</div>
+        </div>
+    </header>
+
+    <!-- Emergency Kill-Switch Banner (Triggered when risk >= 75%) -->
+    <div id="kill-switch-banner" class="kill-switch-banner hidden">
+        <div class="kill-banner-content">
+            <span class="material-symbols-outlined kill-icon">warning</span>
+            <div class="kill-text">
+                <strong>EMERGENCY IMPERSONATION THREAT DETECTED (RISK >= 75%)</strong>
+                <span>Automatic Financial Freeze Activated. Line Disconnect & Fraud Escalation Recommended.</span>
+            </div>
+            <div class="kill-actions">
+                <button class="btn-banner-action" onclick="app.escalateCurrentCall()">ESCALATE TO FRAUD OPS</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Grid -->
+    <main class="dashboard-grid">
+        
+        <!-- ================= LEFT COLUMN: RISK & EXPLAINABILITY ================= -->
+        <section class="panel panel-risk">
+            <div class="panel-head">
+                <div class="head-title">
+                    <span class="material-symbols-outlined">analytics</span>
+                    <span>DYNAMIC RISK POSTURE</span>
+                </div>
+                <span id="call-status-badge" class="badge-status badge-active">ACTIVE CALL</span>
+            </div>
+
+            <!-- Risk Gauge -->
+            <div class="gauge-container">
+                <div class="gauge-circle" id="gauge-circle">
+                    <div class="gauge-inner">
+                        <div class="gauge-value" id="gauge-score">87.5</div>
+                        <div class="gauge-scale">/ 100</div>
+                        <div class="gauge-level text-crimson" id="gauge-level">HIGH RISK</div>
+                    </div>
+                </div>
+                <div class="gauge-caption" id="gauge-action-desc">
+                    High-confidence voice impersonation threat. Sensitive financial actions held.
+                </div>
+            </div>
+
+            <!-- Recommended Action Card -->
+            <div class="rec-action-card card-crimson" id="rec-action-card">
+                <div class="rec-head">
+                    <span class="material-symbols-outlined" id="rec-icon">block</span>
+                    <span class="rec-title" id="rec-action-title">BLOCK & DISCONNECT</span>
+                </div>
+                <div class="rec-body" id="rec-action-body">
+                    Automated kill-switch triggered. Disallow transaction authorizations on this channel.
+                </div>
+            </div>
+
+            <!-- Multi-Factor Contribution Stack -->
+            <div class="risk-breakdown-section">
+                <div class="section-title">5-COMPONENT RISK ATTRIBUTION</div>
+                <div class="breakdown-list">
+                    <div class="breakdown-item">
+                        <div class="b-meta">
+                            <span>Synthetic Voice Probability (35%)</span>
+                            <span id="b-val-synth">31.2%</span>
+                        </div>
+                        <div class="b-track"><div class="b-bar bg-crimson" id="b-bar-synth" style="width: 89%;"></div></div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="b-meta">
+                            <span>Speaker Biometric Mismatch (25%)</span>
+                            <span id="b-val-speaker">17.3%</span>
+                        </div>
+                        <div class="b-track"><div class="b-bar bg-amber" id="b-bar-speaker" style="width: 69%;"></div></div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="b-meta">
+                            <span>Behavior & Prosody Anomaly (15%)</span>
+                            <span id="b-val-behavior">11.3%</span>
+                        </div>
+                        <div class="b-track"><div class="b-bar bg-blue" id="b-bar-behavior" style="width: 75%;"></div></div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="b-meta">
+                            <span>Financial & Context Exposure (15%)</span>
+                            <span id="b-val-context">12.8%</span>
+                        </div>
+                        <div class="b-track"><div class="b-bar bg-purple" id="b-bar-context" style="width: 85%;"></div></div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="b-meta">
+                            <span>Replay / Liveness Threat (10%)</span>
+                            <span id="b-val-replay">4.0%</span>
+                        </div>
+                        <div class="b-track"><div class="b-bar bg-teal" id="b-bar-replay" style="width: 40%;"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Explainability Reason Tags -->
+            <div class="reasons-section">
+                <div class="section-title">EXPLAINABILITY REASON CODES</div>
+                <div class="reason-chips" id="reason-chips-container">
+                    <span class="chip chip-crimson">AI_VOICE_CLONING_DETECTED</span>
+                    <span class="chip chip-crimson">BIOMETRIC_VOICEPRINT_MISMATCH</span>
+                    <span class="chip chip-amber">UNREGISTERED_CALLER_ID_SPOOF_RISK</span>
+                    <span class="chip chip-purple">HIGH_VALUE_TRANSACTION: ₹25,00,000</span>
+                    <span class="chip chip-purple">FIRST_TIME_UNVERIFIED_BENEFICIARY</span>
+                    <span class="chip chip-crimson">EXCEEDED_KILL_SWITCH_THRESHOLD</span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= CENTER COLUMN: TELEMETRY, WAVEFORM & SIMULATOR ================= -->
+        <section class="panel panel-center">
+            <div class="panel-head">
+                <div class="head-title">
+                    <span class="material-symbols-outlined">graphic_eq</span>
+                    <span>ACOUSTIC FORENSICS & LIVE SPECTRUM</span>
+                </div>
+                <div class="call-meta-info" id="active-call-meta">
+                    Session: <span class="text-cyan font-mono" id="meta-call-id">CALL-IMPERSONATE-999</span> | 
+                    Claimed: <span class="text-amber font-mono" id="meta-claimed">Rajesh Verma (CFO)</span>
+                </div>
+            </div>
+
+            <!-- Live Audio Waveform Canvas -->
+            <div class="waveform-box">
+                <canvas id="waveform-canvas" width="700" height="140"></canvas>
+                <div class="waveform-overlay">
+                    <span class="live-tag"><span class="dot-rec"></span> LIVE 16kHz STREAM</span>
+                    <span class="window-tag">WINDOW: 2.0s</span>
+                </div>
+            </div>
+
+            <!-- Acoustic Physical Metrics Grid -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="m-label">FUNDAMENTAL PITCH</div>
+                    <div class="m-val" id="m-pitch">135.2 <span class="m-unit">Hz</span></div>
+                    <div class="m-sub">Human norm: 85-255 Hz</div>
+                </div>
+                <div class="metric-card">
+                    <div class="m-label">PITCH JITTER</div>
+                    <div class="m-val text-crimson" id="m-jitter">0.12 <span class="m-unit">%</span></div>
+                    <div class="m-sub text-crimson">Robotic rigidity &lt; 0.25%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="m-label">SPECTRAL CENTROID</div>
+                    <div class="m-val text-amber" id="m-centroid">3,840 <span class="m-unit">Hz</span></div>
+                    <div class="m-sub">Elevated high-freq</div>
+                </div>
+                <div class="metric-card">
+                    <div class="m-label">DETECTED VOCODER</div>
+                    <div class="m-val text-crimson" id="m-vocoder">HiFi-GAN / VITS</div>
+                    <div class="m-sub">Neural Vocoder Artifacts</div>
+                </div>
+            </div>
+
+            <!-- Live Testing & Simulation Sandbox -->
+            <div class="sandbox-section">
+                <div class="section-title">INTERACTIVE GATEWAY SIMULATION & VERIFICATION</div>
+                
+                <!-- 4 Hackathon Quick-Trigger Scenarios -->
+                <div class="scenario-buttons">
+                    <button class="btn-scenario btn-scen-green" onclick="app.loadScenario('legit')">
+                        <span class="scen-icon">🛡️</span>
+                        <div class="scen-meta">
+                            <strong>1. Legitimate Call</strong>
+                            <span>CFO Rajesh Verma (₹1.5L Vendor) • Risk ~12% [ALLOW]</span>
+                        </div>
+                    </button>
+                    <button class="btn-scenario btn-scen-amber" onclick="app.loadScenario('urgency')">
+                        <span class="scen-icon">⚠️</span>
+                        <div class="scen-meta">
+                            <strong>2. Suspicious Urgency</strong>
+                            <span>VP Priya Sharma (₹8L wire, abnormal tempo) • Risk ~54% [MFA]</span>
+                        </div>
+                    </button>
+                    <button class="btn-scenario btn-scen-red active-scenario" onclick="app.loadScenario('attack')">
+                        <span class="scen-icon">🚨</span>
+                        <div class="scen-meta">
+                            <strong>3. CFO ₹25L Deepfake Attack</strong>
+                            <span>AI Clone + Offshore Wire • Risk ~88% [KILL-SWITCH BLOCK]</span>
+                        </div>
+                    </button>
+                    <button class="btn-scenario btn-scen-purple" onclick="app.loadScenario('replay')">
+                        <span class="scen-icon">📻</span>
+                        <div class="scen-meta">
+                            <strong>4. Acoustic Replay Attack</strong>
+                            <span>Speaker transducer playback • Risk ~78% [BLOCK]</span>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Live Mic & File Upload Controls -->
+                <div class="live-input-controls">
+                    <button class="btn-control btn-mic" id="btn-mic" onclick="app.toggleMicrophone()">
+                        <span class="material-symbols-outlined">mic</span>
+                        <span id="mic-btn-text">START LIVE MICROPHONE EVALUATION</span>
+                    </button>
+                    <label class="btn-control btn-upload">
+                        <span class="material-symbols-outlined">upload_file</span>
+                        <span>UPLOAD AUDIO FILE (.WAV / .MP3)</span>
+                        <input type="file" id="audio-upload-input" accept="audio/*" style="display:none;" onchange="app.handleAudioUpload(event)">
+                    </label>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= RIGHT COLUMN: TRANSACTION GATEWAY & AUDIT ================= -->
+        <section class="panel panel-right">
+            <div class="panel-head">
+                <div class="head-title">
+                    <span class="material-symbols-outlined">account_balance</span>
+                    <span>TRANSACTION PROTECTION GATEKEEPER</span>
+                </div>
+                <span class="badge-status badge-blocked" id="tx-badge-status">BLOCKED</span>
+            </div>
+
+            <!-- CFO ₹25L Financial Transaction Card -->
+            <div class="tx-card">
+                <div class="tx-amount-block">
+                    <div class="tx-amount-label">REQUESTED FUND TRANSFER</div>
+                    <div class="tx-amount-val" id="tx-amount">₹25,00,000<span class="tx-currency">.00 INR</span></div>
+                    <div class="tx-status-banner banner-blocked" id="tx-banner">
+                        <span class="material-symbols-outlined">gpp_bad</span>
+                        <span>TRANSACTION FROZEN BY RISK GATEWAY</span>
+                    </div>
+                </div>
+
+                <div class="tx-details-grid">
+                    <div class="tx-row">
+                        <span class="tx-key">Transaction ID:</span>
+                        <span class="tx-val font-mono" id="tx-id">TX-CFO-25L-001</span>
+                    </div>
+                    <div class="tx-row">
+                        <span class="tx-key">Beneficiary Name:</span>
+                        <span class="tx-val" id="tx-beneficiary">Apex Global Holdings LLC</span>
+                    </div>
+                    <div class="tx-row">
+                        <span class="tx-key">Beneficiary Account:</span>
+                        <span class="tx-val font-mono">IN98HDFC00009999888877</span>
+                    </div>
+                    <div class="tx-row">
+                        <span class="tx-key">Account Status:</span>
+                        <span class="tx-val text-amber">First-Time Unverified Payee</span>
+                    </div>
+                    <div class="tx-row">
+                        <span class="tx-key">Caller Identity:</span>
+                        <span class="tx-val text-crimson">Unregistered Caller (+91-99999-00000)</span>
+                    </div>
+                </div>
+
+                <!-- Operator Defensive Action Buttons -->
+                <div class="operator-actions">
+                    <div class="op-title">OPERATOR DEFENSIVE ACTIONS</div>
+                    <div class="op-btn-grid">
+                        <button class="btn-op btn-op-mfa" onclick="app.triggerAction('VERIFY_MFA')">
+                            <span class="material-symbols-outlined">send_to_mobile</span>
+                            <span>DISPATCH PUSH MFA</span>
+                        </button>
+                        <button class="btn-op btn-op-callback" onclick="app.triggerAction('REGISTERED_CALLBACK')">
+                            <span class="material-symbols-outlined">phone_callback</span>
+                            <span>REGISTERED CALLBACK</span>
+                        </button>
+                        <button class="btn-op btn-op-escalate" onclick="app.triggerAction('ESCALATE')">
+                            <span class="material-symbols-outlined">notification_important</span>
+                            <span>ESCALATE FRAUD OPS</span>
+                        </button>
+                        <button class="btn-op btn-op-reject" onclick="app.triggerAction('REJECT')">
+                            <span class="material-symbols-outlined">cancel</span>
+                            <span>HARD REJECT & FREEZE</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audit Trail & Alert Log -->
+            <div class="audit-trail-section">
+                <div class="section-title">REAL-TIME FORENSIC AUDIT TRAIL</div>
+                <div class="audit-list" id="audit-list">
+                    <div class="audit-item audit-critical">
+                        <div class="a-time font-mono">21:42:08</div>
+                        <div class="a-content">
+                            <strong>KILL-SWITCH ACTIVATED</strong>
+                            <span>Impersonation risk 87.5% exceeded 75% institutional threshold.</span>
+                        </div>
+                    </div>
+                    <div class="audit-item audit-warning">
+                        <div class="a-time font-mono">21:42:05</div>
+                        <div class="a-content">
+                            <strong>TRANSACTION HELD: ₹25,00,000.00</strong>
+                            <span>High-value transfer to unverified offshore beneficiary blocked.</span>
+                        </div>
+                    </div>
+                    <div class="audit-item audit-info">
+                        <div class="a-time font-mono">21:41:59</div>
+                        <div class="a-content">
+                            <strong>VOCODER ARTIFACT DETECTED</strong>
+                            <span>HiFi-GAN neural vocoder phase distortion tagged in chunk #1.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- App Script -->
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

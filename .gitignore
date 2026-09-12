@@ -25,3 +25,13 @@ venv/
 *.ogg
 !sample_audio/
 cloudflared.exe
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+voiceguard.db
+checkpoints/
+data/
+*.log
