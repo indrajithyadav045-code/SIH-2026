@@ -24,3 +24,4 @@ venv/
 *.mp3
 *.ogg
 !sample_audio/
+cloudflared.exe
