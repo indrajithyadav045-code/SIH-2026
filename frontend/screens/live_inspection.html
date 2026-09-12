@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-container-lowest":"#ffffff","surface-variant":"#d3e4fe","tertiary-container":"#3e4c60","primary":"#00288e","on-secondary-fixed":"#131b2e","inverse-surface":"#213145","on-tertiary-fixed":"#0d1c2e","secondary-fixed-dim":"#bec6e0","on-surface-variant":"#444653","on-error-container":"#93000a","surface-container-high":"#dce9ff","on-secondary-container":"#5c647a","on-primary-container":"#a8b8ff","on-tertiary-fixed-variant":"#3a485b","surface-tint":"#3755c3","on-secondary":"#ffffff","on-tertiary":"#ffffff","surface-bright":"#f8f9ff","secondary-fixed":"#dae2fd","primary-container":"#1e40af","primary-fixed-dim":"#b8c4ff","on-tertiary-container":"#aebcd4","secondary":"#565e74","surface":"#f8f9ff","on-secondary-fixed-variant":"#3f465c","tertiary-fixed-dim":"#b9c7df","on-primary":"#ffffff","inverse-primary":"#b8c4ff","on-background":"#0b1c30","error-container":"#ffdad6","on-primary-fixed-variant":"#173bab","inverse-on-surface":"#eaf1ff","tertiary":"#273548","surface-dim":"#cbdbf5","secondary-container":"#dae2fd","surface-container-low":"#eff4ff","outline":"#757684","outline-variant":"#c4c5d5","primary-fixed":"#dde1ff","surface-container-highest":"#d3e4fe","surface-container":"#e5eeff","error":"#ba1a1a","background":"#f8f9ff","on-primary-fixed":"#001453","on-surface":"#0b1c30","on-error":"#ffffff","tertiary-fixed":"#d5e3fc"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"margin":"1rem","space-xs":"0.25rem","space-2xs":"0.125rem","space-2xl":"2rem","space-md":"0.75rem","margin-desktop":"2rem","gutter-desktop":"1.5rem","space-sm":"0.5rem","space-xl":"1.5rem","gutter":"1rem","space-lg":"1rem"},"fontFamily":{"code-sm":["JetBrains Mono"],"headline-lg":["Inter"],"body-sm":["Inter"],"label-md":["Inter"],"body-lg":["Inter"],"label-sm":["Inter"],"headline-lg-mobile":["Inter"],"body-md":["Inter"],"headline-md":["Inter"],"label-lg":["Inter"],"code-md":["JetBrains Mono"],"headline-sm":["Inter"]},"fontSize":{"code-sm":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0em","fontWeight":"400"}],"headline-lg":["1.75rem",{"lineHeight":"2.125rem","letterSpacing":"-0.025em","fontWeight":"600"}],"body-sm":["0.8125rem",{"lineHeight":"1.125rem","letterSpacing":"0em","fontWeight":"400"}],"label-md":["0.75rem",{"lineHeight":"0.875rem","letterSpacing":"0.01em","fontWeight":"500"}],"body-lg":["0.9375rem",{"lineHeight":"1.375rem","letterSpacing":"-0.01em","fontWeight":"400"}],"label-sm":["0.6875rem",{"lineHeight":"0.75rem","letterSpacing":"0.04em","fontWeight":"600"}],"headline-lg-mobile":["1.375rem",{"lineHeight":"1.75rem","letterSpacing":"-0.02em","fontWeight":"600"}],"body-md":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"-0.005em","fontWeight":"400"}],"headline-md":["1.25rem",{"lineHeight":"1.625rem","letterSpacing":"-0.02em","fontWeight":"600"}],"label-lg":["0.8125rem",{"lineHeight":"1rem","letterSpacing":"0em","fontWeight":"500"}],"code-md":["0.8125rem",{"lineHeight":"1.125rem","letterSpacing":"-0.01em","fontWeight":"400"}],"headline-sm":["1rem",{"lineHeight":"1.375rem","letterSpacing":"-0.015em","fontWeight":"600"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest border-r border-outline-variant/40 z-50 flex flex-col justify-between select-none"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm border-b border-outline-variant/30"><img alt="Sentinel SOC Logo" class="h-8 w-auto object-contain" src="/static/assets/sentinel_logo.png" onerror="this.src='https://lh3.googleusercontent.com/aida/AEtjO1USBnh12oqWPIMJBQ6JhsjpImOAVM6sWnNrW1DUQTBdPqCw31gitBvelb7hSzJe_I2cHCcVrAuY8sdKvHiMgmN1H8G64TXgZBtnEnoFLHMQWW8yR0MaaEotOqvjpetnqg2-lBLwQYuUcZXVHcvLyzje0Oxx4XybXZorBfu1HAxtdRJmeiVwJZWLua1QHviZm_9vjRtnxpJUicwhMW3aAsb1D1kupuYtfpQ9-_VdL5Y1Sk_fiWAXpAErkA'"/><div class="flex flex-col"><span class="font-label-lg text-label-lg text-on-surface font-semibold tracking-tight">Sentinel SOC</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Enterprise Trust</span></div></div><div class="px-space-md py-space-sm"><div class="px-space-sm py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Main Operations</div><nav class="space-y-space-2xs mt-space-2xs" data-active-classes="bg-primary-container text-on-primary font-semibold"><a class="flex items-center justify-between px-space-md py-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="overview" href="/screens/overview.html"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">dashboard</span><span>Overview</span></div></a><a aria-current="page" class="flex items-center justify-between px-space-md py-space-sm rounded transition-colors bg-primary-container text-on-primary font-semibold" data-path="live-calls" href="/screens/live_inspection.html"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">phone_in_talk</span><span>Live Calls</span></div><span class="font-label-sm text-label-sm bg-primary-container text-on-primary px-1.5 py-0.5 rounded font-medium">3 Active</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="risk-events" href="/screens/live_inspection.html"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">drive_file_rename_outline</span><span>Risk Events</span></div><span class="font-label-sm text-label-sm bg-error-container text-on-error-container px-1.5 py-0.5 rounded font-medium">12</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="call-history" href="/screens/overview.html"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">history</span><span>Call History</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="analytics-&amp;-trends" href="/screens/analytics.html"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">insights</span><span>Analytics &amp; Trends</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="command-center" href="/"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">shield</span><span>Command Center</span></div></a></nav></div></div><div class="p-space-md border-t border-outline-variant/30 bg-surface-container-low"><div class="bg-surface-container-lowest p-space-sm rounded border border-outline-variant/40 space-y-space-xs"><div class="flex items-center gap-space-xs"><span class="h-2 w-2 rounded-full bg-emerald-600 animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface font-semibold truncate">Core ML Models Operational</span></div><div class="flex items-center justify-between font-code-sm text-code-sm text-secondary pt-space-2xs"><span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">speed</span>42ms</span><span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">bolt</span>99.98% SLA</span></div></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest border-b border-outline-variant/40 z-40 px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-sm"><span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Sentinel Security</span><span class="text-outline font-label-sm text-label-sm">/</span><span class="font-label-lg text-label-lg text-on-surface font-semibold">Operational Console</span></div><div class="flex-1 max-w-xl mx-space-xl"><div class="relative flex items-center w-full"><span class="material-symbols-outlined absolute left-space-sm text-secondary text-sm pointer-events-none">search</span><input class="w-full h-8 pl-9 pr-14 bg-surface rounded border border-outline-variant text-on-surface placeholder:text-secondary font-body-sm text-body-sm focus:outline-none focus:border-primary-container transition-colors" placeholder="Search calls, caller IDs, claimed identity, or transaction hashes..." type="text"/><div class="absolute right-space-sm flex items-center pointer-events-none"><kbd class="font-code-sm text-code-sm bg-surface-container px-1.5 py-0.5 rounded text-secondary border border-outline-variant/40">⌘K</kbd></div></div></div><div class="flex items-center gap-space-lg"><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded border border-outline-variant/40 font-code-sm text-code-sm text-on-surface-variant"><span class="h-1.5 w-1.5 rounded-full bg-emerald-600"></span><span>PRODUCTION</span><span class="text-outline">•</span><span>US-EAST-1</span></div><button class="relative p-1.5 text-secondary hover:text-on-surface rounded hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-xl">notifications</span><span class="absolute top-1 right-1 h-2 w-2 bg-error rounded-full ring-2 ring-surface-container-lowest"></span></button><div class="h-6 w-px bg-outline-variant/40"></div><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant/40" src="/static/assets/elena_rostova.jpg" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuDA10bTxo9bcqMPdg-zinhKXNIaVtnBt-njLhz0HdeXBwwMf_0RO8ii5dcJlT1no5clTrBdo8FqRtQuXrGZvVlwOsyB9EQ6ImMzJsBuitWb-u4bxYnvEP-Tht9WHKXCAasK9LkRO-YkR1GiaAeoQ4pacQunCNv72hwjOszQg_niun8c3NJ38iNQworQ7IMLu4mOYwLfcZ3IkmeIAQ-BnK9LCZIcspWhJTGkyOOmJikr1l0olrZkxNE'"/><div class="flex flex-col text-left"><div class="flex items-center gap-space-xs"><span class="font-label-md text-label-md text-on-surface font-semibold leading-tight">Elena Rostova</span><span class="font-label-sm text-label-sm bg-secondary-container text-on-secondary-fixed-variant px-1 rounded font-medium">Global Trust Bank</span></div><span class="font-label-sm text-label-sm text-secondary leading-tight">Sr. Fraud Risk Officer</span></div></div></div></header><main class="relative pt-16 bg-surface min-h-screen"><div class="w-full px-space-lg py-space-lg"><div class="flex flex-col w-full space-y-space-md">
+<!-- Sticky Sub-Bar / Tactical Call Header -->
+<div class="bg-surface-container-lowest border border-outline-variant/50 rounded p-space-md shadow-sm">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md pb-space-sm border-b border-outline-variant/30">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-2">
+<span class="font-code-md text-code-md font-semibold text-on-surface">#CALL-2025-08492</span>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-label-sm font-label-sm bg-emerald-50 text-emerald-800 border border-emerald-300">
+<span class="h-1.5 w-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+            LIVE AUDIO STREAM
+          </span>
+<span class="font-code-sm text-code-sm text-secondary bg-surface-container px-2 py-0.5 rounded border border-outline-variant/40">
+            04:18.24 elapsed
+          </span>
+</div>
+<span class="text-outline-variant hidden sm:inline">|</span>
+<div class="hidden sm:flex items-center gap-1.5 font-label-sm text-label-sm text-secondary">
+<span class="material-symbols-outlined text-sm text-slate-500">router</span>
+<span>SIP-TRUNK-US-W2 (G.711u / 8kHz Mono)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-1 bg-surface-container-low px-2 py-1 rounded border border-outline-variant/40">
+<span class="material-symbols-outlined text-xs text-primary-container">encrypted</span>
+<span class="font-code-sm text-code-sm text-secondary">Acoustic Hash:</span>
+<span class="font-code-sm text-code-sm text-on-surface font-semibold">9e4a..b108</span>
+</div>
+<button class="h-8 px-2.5 rounded bg-surface border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-container transition-colors flex items-center gap-1 shadow-sm" type="button">
+<span class="material-symbols-outlined text-sm text-secondary">share</span>
+          Handoff
+        </button>
+<button class="h-8 px-2.5 rounded bg-surface border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-container transition-colors flex items-center gap-1 shadow-sm" type="button">
+<span class="material-symbols-outlined text-sm text-secondary">download</span>
+          Raw PCAP
+        </button>
+</div>
+</div>
+<!-- Telemetry Strip (Key Call Meta) -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md pt-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Originating Caller ID</span>
+<div class="flex items-baseline gap-1.5 mt-0.5">
+<span class="font-code-md text-code-md font-semibold text-on-surface">+1 (415) 892-0144</span>
+<span class="px-1.5 py-0.2 rounded text-label-sm font-label-sm bg-amber-50 text-amber-800 border border-amber-200">VoIP Trunk</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary">Twilio API Gateway • Phoenix, AZ (Anomalous IP)</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Claimed Customer Profile</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="font-body-md text-body-md font-semibold text-on-surface truncate">Arthur Vance Pendelton</span>
+<span class="px-1.5 py-0.2 rounded text-label-sm font-label-sm bg-surface-container text-secondary border border-outline-variant/60">Tier 1 PB</span>
+</div>
+<span class="font-code-sm text-code-sm text-secondary">Acct #****-9821 • Voice Token: Registered 2024</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Internal Route</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="material-symbols-outlined text-sm text-primary-container">support_agent</span>
+<span class="font-body-md text-body-md font-medium text-on-surface">Wire Transfer Desk • Desk #402</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary">Analyst: J. Marcus (Tier 2 Certified)</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Requested Operation</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="font-body-md text-body-md font-semibold text-error leading-tight">$450,000.00 USD</span>
+<span class="font-label-sm text-label-sm text-secondary">SWIFT Outbound</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary truncate">To: Al-Mirah Commercial Escrow (Dubai, UAE)</span>
+</div>
+</div>
+</div>
+<!-- Main Tactical Workspace (2 Columns: 65% / 35%) -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-md items-start">
+<!-- LEFT COLUMN: Acoustic, Risk Metrics & Live Transcript (8 cols = ~66%) -->
+<div class="xl:col-span-8 space-y-space-md">
+<!-- Primary Composite Risk Banner -->
+<div class="bg-surface-container-lowest border border-outline-variant/50 rounded p-space-md shadow-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<!-- Big Restrained Score Metric -->
+<div class="flex flex-col items-baseline bg-surface-container-low px-space-md py-space-sm rounded border border-outline-variant/60 min-w-[120px]">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Risk Score</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-headline-lg text-headline-lg font-bold text-error tracking-tight">82</span>
+<span class="font-body-sm text-body-sm text-secondary">/ 100</span>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm font-semibold tracking-wide bg-red-50 text-red-700 border border-red-200">
+                  HIGH RISK: SYNTHETIC INJECTION DETECTED
+                </span>
+<span class="font-code-sm text-code-sm text-secondary">• Ensemble Model v4.8.2</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary max-w-xl leading-relaxed">
+                Model confidence: <strong class="text-on-surface font-semibold">94.2%</strong>. Telemetry indicates multi-band neural vocoder synthesis artifacts combined with low voiceprint harmonic resonance correlation.
+              </p>
+<div class="flex items-center gap-1 text-slate-500 font-code-sm text-code-sm pt-0.5">
+<span class="material-symbols-outlined text-xs">gavel</span>
+<span>Evidentiary diagnostic assessment for SOC analyst triage. Standard procedures require manual operational challenge.</span>
+</div>
+</div>
+</div>
+<div class="flex sm:flex-col items-end justify-between sm:justify-center border-t sm:border-t-0 pt-2 sm:pt-0 border-outline-variant/30 gap-1 text-right">
+<span class="font-label-sm text-label-sm uppercase text-secondary font-semibold">Latency Overhead</span>
+<span class="font-code-md text-code-md text-emerald-700 font-medium">38 ms / stream</span>
+<span class="font-code-sm text-code-sm text-secondary">Real-time Spectral FFT</span>
+</div>
+</div>
+<!-- Metric Bars Breakdown Grid -->
+<div class="mt-space-md pt-space-md border-t border-outline-variant/30 space-y-space-sm">
+<span class="font-label-sm text-label-sm uppercase font-semibold text-secondary block tracking-wider">
+            Decomposed Forensic Risk Indicators (Deterministic &amp; Probabilistic Vectors)
+          </span>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-space-lg gap-y-space-sm">
+<!-- Metric 1 -->
+<div class="space-y-1 bg-surface-container-low/60 p-2.5 rounded border border-outline-variant/40">
+<div class="flex justify-between items-baseline">
+<span class="font-label-md text-label-md font-medium text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-red-600">graphic_eq</span>
+                  Synthetic Voice Probability
+                </span>
+<span class="font-code-sm text-code-sm font-semibold text-red-600">p = 0.910 (91%)</span>
+</div>
+<div class="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-red-600 rounded-full" style="width: 91%;"></div>
+</div>
+<p class="font-body-sm text-body-sm text-secondary text-xs leading-snug">
+                Neural vocoder artifacts identified in 3.8kHz–7.2kHz spectral bands with high temporal rigidity.
+              </p>
+</div>
+<!-- Metric 2 -->
+<div class="space-y-1 bg-surface-container-low/60 p-2.5 rounded border border-outline-variant/40">
+<div class="flex justify-between items-baseline">
+<span class="font-label-md text-label-md font-medium text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-amber-600">record_voice_over</span>
+                  Voiceprint Speaker Similarity
+                </span>
+<span class="font-code-sm text-code-sm font-semibold text-amber-600">24% match</span>
+</div>
+<div class="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 rounded-full" style="width: 24%;"></div>
+</div>
+<p class="font-body-sm text-body-sm text-secondary text-xs leading-snug">
+                Low acoustic correlation against enrolled biometrics for A. Pendelton (registered Nov 2024).
+              </p>
+</div>
+<!-- Metric 3 -->
+<div class="space-y-1 bg-surface-container-low/60 p-2.5 rounded border border-outline-variant/40">
+<div class="flex justify-between items-baseline">
+<span class="font-label-md text-label-md font-medium text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-slate-500">replay</span>
+                  Replay &amp; Acoustic Echo Probability
+                </span>
+<span class="font-code-sm text-code-sm font-medium text-slate-600">p = 0.072 (7%)</span>
+</div>
+<div class="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-slate-400 rounded-full" style="width: 7%;"></div>
+</div>
+<p class="font-body-sm text-body-sm text-secondary text-xs leading-snug">
+                Zero multi-path room impulse response. Direct sound-card virtual cable injection suspected.
+              </p>
+</div>
+<!-- Metric 4 -->
+<div class="space-y-1 bg-surface-container-low/60 p-2.5 rounded border border-outline-variant/40">
+<div class="flex justify-between items-baseline">
+<span class="font-label-md text-label-md font-medium text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-amber-600">psychology</span>
+                  Conversational Behavioral Anomaly
+                </span>
+<span class="font-code-sm text-code-sm font-semibold text-amber-600">p = 0.680 (68%)</span>
+</div>
+<div class="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 rounded-full" style="width: 68%;"></div>
+</div>
+<p class="font-body-sm text-body-sm text-secondary text-xs leading-snug">
+                Urgent cadence (+34 wpm), stress micro-tremors absent, deflecting security questions.
+              </p>
+</div>
+<!-- Metric 5 (Spanning Full Width in Grid) -->
+<div class="md:col-span-2 space-y-1 bg-surface-container-low/60 p-2.5 rounded border border-outline-variant/40">
+<div class="flex justify-between items-baseline">
+<span class="font-label-md text-label-md font-medium text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-red-600">warning</span>
+                  Transactional &amp; Session Context Risk
+                </span>
+<span class="font-code-sm text-code-sm font-semibold text-red-600">Score: 84 / 100</span>
+</div>
+<div class="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-red-600 rounded-full" style="width: 84%;"></div>
+</div>
+<p class="font-body-sm text-body-sm text-secondary text-xs leading-snug">
+                First-time overseas escrow wire instruction. Correlates with failed portal credential reset attempt 12 minutes prior from an unverified IP in Vilnius, Lithuania.
+              </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Real-time Acoustic Waveform & Spectral Timeline -->
+<div class="bg-surface-container-lowest border border-outline-variant/50 rounded p-space-md shadow-sm space-y-space-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg font-semibold text-on-surface">Acoustic Telemetry Stream</span>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-secondary border border-outline-variant/50">
+              Multi-band FFT: 128 bins
+            </span>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-red-700 bg-red-50 border border-red-200 px-2 py-0.5 rounded">
+<span class="h-1.5 w-1.5 rounded-full bg-red-600"></span> 2 Anomalies Tagged
+            </span>
+<div class="flex items-center gap-1">
+<button class="p-1 rounded hover:bg-surface-container text-secondary hover:text-on-surface" title="Pause Stream" type="button">
+<span class="material-symbols-outlined text-base">pause</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container text-secondary hover:text-on-surface" title="Loop Selection" type="button">
+<span class="material-symbols-outlined text-base">replay</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Visual Dark Forensic Canvas (Slate 900) -->
+<div class="bg-slate-900 rounded p-space-sm space-y-2 border border-slate-800">
+<!-- Track Labels -->
+<div class="flex justify-between items-center text-slate-400 font-code-sm text-code-sm px-1">
+<span>CH1: INBOUND STREAM (CALLER)</span>
+<span class="text-sky-400 font-mono">Current Time: 04:18.24</span>
+</div>
+<!-- Waveform Visual Area -->
+<div class="relative h-24 w-full bg-slate-950/70 rounded overflow-hidden flex items-center px-1">
+<!-- Horizontal Zero Axis -->
+<div class="absolute inset-x-0 h-px bg-slate-800 pointer-events-none"></div>
+<!-- Discrete Waveform Audio Bars (Stylized Forensic Vector) -->
+<div class="w-full h-full flex items-center justify-between gap-[2px] relative z-10 py-2">
+<span class="w-[2px] h-3 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-5 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-8 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-4 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-10 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-14 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-9 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-6 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-2 bg-slate-600 rounded-sm"></span>
+<span class="w-[2px] h-1 bg-red-400 rounded-sm"></span>
+<span class="w-[2px] h-1 bg-red-400 rounded-sm"></span>
+<span class="w-[2px] h-16 bg-red-500 rounded-sm"></span>
+<span class="w-[2px] h-18 bg-red-500 rounded-sm"></span>
+<span class="w-[2px] h-14 bg-red-500 rounded-sm"></span>
+<span class="w-[2px] h-8 bg-red-400 rounded-sm"></span>
+<span class="w-[2px] h-3 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-7 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-11 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-15 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-6 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-12 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-10 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-4 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-16 bg-amber-400 rounded-sm"></span>
+<span class="w-[2px] h-20 bg-amber-400 rounded-sm"></span>
+<span class="w-[2px] h-19 bg-red-500 rounded-sm"></span>
+<span class="w-[2px] h-14 bg-red-500 rounded-sm"></span>
+<span class="w-[2px] h-7 bg-amber-400 rounded-sm"></span>
+<span class="w-[2px] h-5 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-9 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-13 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-8 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-14 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-12 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-7 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-11 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-16 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-10 bg-slate-500 rounded-sm"></span>
+<span class="w-[2px] h-12 bg-red-500 rounded-sm animate-pulse"></span>
+<span class="w-[2px] h-15 bg-red-500 rounded-sm animate-pulse"></span>
+<span class="w-[2px] h-11 bg-red-400 rounded-sm animate-pulse"></span>
+</div>
+<div class="absolute top-0 bottom-0 right-3 w-[2px] bg-sky-400 pointer-events-none shadow-[0_0_8px_rgba(56,189,248,0.5)]">
+<div class="w-2.5 h-2.5 bg-sky-400 rounded-full -ml-[4px] -mt-0.5"></div>
+</div>
+<div class="absolute left-[24%] top-1 bg-red-950/90 border border-red-500/80 text-red-200 text-[10px] font-mono px-1.5 py-0.5 rounded shadow">
+              01:14 • Latency Burst (p=0.88)
+            </div>
+<div class="absolute left-[54%] bottom-1 bg-amber-950/90 border border-amber-500/80 text-amber-200 text-[10px] font-mono px-1.5 py-0.5 rounded shadow">
+              02:40 • Vocoder Discontinuity
+            </div>
+</div>
+<div class="flex justify-between font-code-sm text-code-sm text-slate-500 pt-1 border-t border-slate-800">
+<span>00:00</span>
+<span>01:00</span>
+<span>02:00</span>
+<span>03:00</span>
+<span class="text-slate-300 font-semibold">04:18 (LIVE)</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center justify-between text-secondary font-code-sm text-code-sm pt-1">
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-1">
+<span class="h-2 w-2 rounded-full bg-slate-400"></span> Unflagged Baseline
+            </span>
+<span class="flex items-center gap-1">
+<span class="h-2 w-2 rounded-full bg-amber-500"></span> Spectral Anomaly
+            </span>
+<span class="flex items-center gap-1">
+<span class="h-2 w-2 rounded-full bg-red-600"></span> Synthetic Generation Block
+            </span>
+</div>
+<span class="text-slate-500">Spectral Band Analysis: 20Hz - 22.05kHz</span>
+</div>
+</div>
+<!-- Live Call Audio Transcript with Probabilistic Annotations -->
+<div class="bg-surface-container-lowest border border-outline-variant/50 rounded p-space-md shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between border-b border-outline-variant/30 pb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-base">subtitles</span>
+<span class="font-label-lg text-label-lg font-semibold text-on-surface">Forensic Speech-To-Text Log</span>
+<span class="font-code-sm text-code-sm text-secondary bg-surface-container px-2 py-0.5 rounded">ASR Latency: 120ms</span>
+</div>
+<div class="flex items-center gap-2">
+<label class="flex items-center gap-1.5 font-label-sm text-label-sm text-secondary cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-primary-container h-3.5 w-3.5" type="checkbox"/>
+<span>Highlight Synthetic Phonemes</span>
+</label>
+</div>
+</div>
+<!-- Conversation Stream -->
+<div class="space-y-space-sm max-h-[380px] overflow-y-auto pr-1">
+<div class="flex items-start gap-space-sm text-body-sm font-body-sm">
+<div class="w-20 shrink-0 font-code-sm text-code-sm text-secondary pt-0.5">00:14</div>
+<div class="w-28 shrink-0 font-label-sm text-label-sm font-semibold text-secondary uppercase">Agent #402</div>
+<div class="flex-1 bg-surface-container-low p-2.5 rounded border border-outline-variant/30 text-on-surface">
+              "Good afternoon, Mr. Pendelton. I have your file open regarding the pending wire request initiated through the private banking portal. Could you confirm the designated beneficiary and transaction total for our logs?"
+            </div>
+</div>
+<div class="flex items-start gap-space-sm text-body-sm font-body-sm">
+<div class="w-20 shrink-0 font-code-sm text-code-sm text-secondary pt-0.5">00:32</div>
+<div class="w-28 shrink-0 font-label-sm text-label-sm font-semibold text-error uppercase">Claimed Arthur</div>
+<div class="flex-1 bg-red-50/50 p-2.5 rounded border border-red-200/80 text-on-surface relative">
+<span class="inline bg-red-100/70 border-b-2 border-red-500 px-0.5 cursor-help" title="Vocoder phase jitter: 89% synthetic confidence">
+                "Yes, hello. This is Arthur Vance Pendelton.
+              </span>
+              I need four hundred and fifty thousand dollars wired immediately to the Al-Mirah Escrow in Dubai. 
+              <span class="inline bg-red-100/70 border-b-2 border-red-500 px-0.5 cursor-help" title="Unnatural prosody transition; 94% TTS confidence">
+                The settlement window closes at 5 PM Gulf Standard Time
+              </span>, so it's critical we push this through without routine delays."
+              
+              <div class="mt-2 flex items-center gap-2 pt-1 border-t border-red-200/60 font-code-sm text-code-sm text-red-700">
+<span class="material-symbols-outlined text-xs">analytics</span>
+<span>Phoneme segment flagged • Multi-layer Perceptron (MLP) TTS profile match: 91.4%</span>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-space-sm text-body-sm font-body-sm">
+<div class="w-20 shrink-0 font-code-sm text-code-sm text-secondary pt-0.5">01:08</div>
+<div class="w-28 shrink-0 font-label-sm text-label-sm font-semibold text-secondary uppercase">Agent #402</div>
+<div class="flex-1 bg-surface-container-low p-2.5 rounded border border-outline-variant/30 text-on-surface">
+              "Understood, sir. Because this wire exceeds the $250k daily threshold and goes to a new international entity, I need to administer one out-of-band verification question from your file. What was the maiden name of your mother's maternal grandmother?"
+            </div>
+</div>
+<div class="flex items-start gap-space-sm text-body-sm font-body-sm">
+<div class="w-20 shrink-0 font-code-sm text-code-sm text-secondary pt-0.5">01:42</div>
+<div class="w-28 shrink-0 font-label-sm text-label-sm font-semibold text-error uppercase">Claimed Arthur</div>
+<div class="flex-1 bg-red-50/50 p-2.5 rounded border border-red-200/80 text-on-surface">
+<span class="inline bg-amber-100/80 border-b-2 border-amber-500 px-0.5 cursor-help" title="Hesitation gap: 2.1s delay before dynamic neural voice response">
+                [2.1s Silence / Audio Buffer Spike]
+              </span>
+              "Look, I am currently boarding a flight in Geneva and I do not have my safe deposit records with me. 
+              <span class="inline bg-red-100/70 border-b-2 border-red-500 px-0.5 cursor-help" title="Diffusion-based speech cadence; pitch variance flatline">
+                My portfolio manager, Mr. Davies, already cleared this transaction yesterday.
+              </span>
+              Check the notes. Authorize the transfer."
+
+              <div class="mt-2 flex items-center gap-2 pt-1 border-t border-red-200/60 font-code-sm text-code-sm text-red-700">
+<span class="material-symbols-outlined text-xs">crisis_alert</span>
+<span>Behavioral Deflection Index: High (0.84) • Pitch variance deviation: -3.8 SD</span>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-space-sm text-body-sm font-body-sm">
+<div class="w-20 shrink-0 font-code-sm text-code-sm text-secondary pt-0.5">02:30</div>
+<div class="w-28 shrink-0 font-label-sm text-label-sm font-semibold text-secondary uppercase">Agent #402</div>
+<div class="flex-1 bg-surface-container-low p-2.5 rounded border border-outline-variant/30 text-on-surface">
+              "I understand your urgency, Mr. Pendelton. Please bear with me for one moment while the compliance verification server completes its handshake..."
+            </div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Risk Factors & High-Severity Operator Action Box (4 cols = ~34%) -->
+<div class="xl:col-span-4 space-y-space-md">
+<!-- Structured Evidence Panel: Risk Factors -->
+<div class="bg-surface-container-lowest border border-outline-variant/50 rounded p-space-md shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between border-b border-outline-variant/30 pb-space-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-base">fact_check</span>
+<span class="font-label-lg text-label-lg font-semibold text-on-surface">Forensic Findings</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container px-2 py-0.5 rounded">4 Vectors</span>
+</div>
+<div class="space-y-space-xs">
+<div class="p-space-sm rounded bg-surface-container-low border-l-4 border-l-red-600 border border-outline-variant/40 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Synthetic Speech Signature</span>
+<span class="font-label-sm text-label-sm font-semibold px-1.5 py-0.2 rounded bg-red-100 text-red-800 border border-red-300">Critical • 91%</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary text-xs leading-relaxed">
+              Phase inconsistency in phoneme transitions characteristic of open-source diffusion-based zero-shot voice cloning model.
+            </p>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low border-l-4 border-l-amber-500 border border-outline-variant/40 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Speaker Similarity Sub-Threshold</span>
+<span class="font-label-sm text-label-sm font-semibold px-1.5 py-0.2 rounded bg-amber-100 text-amber-800 border border-amber-300">High • 24%</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary text-xs leading-relaxed">
+              Fundamental pitch frequency (F0) and formant distribution (F1/F2) heavily deviate from client baseline biometric sample.
+            </p>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low border-l-4 border-l-red-600 border border-outline-variant/40 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Anomalous Outbound Wire</span>
+<span class="font-label-sm text-label-sm font-semibold px-1.5 py-0.2 rounded bg-red-100 text-red-800 border border-red-300">High • 84%</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary text-xs leading-relaxed">
+              $450,000 to first-time non-domestic escrow entity with zero transaction history in past 36 months.
+            </p>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low border-l-4 border-l-slate-400 border border-outline-variant/40 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Calling Origin Masked</span>
+<span class="font-label-sm text-label-sm font-semibold px-1.5 py-0.2 rounded bg-slate-200 text-slate-800 border border-slate-300">Medium • VoIP</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary text-xs leading-relaxed">
+              Telephony metadata indicates spoofed caller ID injected through a virtual SIP gateway originating out of an unauthorized subnet.
+            </p>
+</div>
+</div>
+</div>
+<!-- Fraud Intervention Action Panel -->
+<div class="bg-surface-container-lowest border-2 border-primary-container/30 rounded p-space-md shadow-sm space-y-space-md">
+<div class="space-y-1 border-b border-outline-variant/30 pb-space-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary-container text-lg">shield</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">Fraud Analyst Intervention</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary text-xs">
+            Risk tier <strong class="text-error font-semibold">HIGH (82/100)</strong> mandates analyst intervention. Standard SOP requires transaction halt pending physical identity re-verification.
+          </p>
+</div>
+<!-- Primary Intervention Buttons -->
+<div class="space-y-2">
+<button onclick="triggerDefense('VERIFY_MFA')" class="w-full h-10 px-space-md rounded bg-primary-container hover:bg-blue-800 text-on-primary font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 shadow transition-colors" type="button">
+<span class="material-symbols-outlined text-base">verified_user</span>
+            Require Out-of-Band Auth (FIDO2 / SMS)
+          </button>
+<button onclick="triggerDefense('REJECT')" class="w-full h-10 px-space-md rounded bg-red-50 hover:bg-red-100 border border-red-300 text-red-700 font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 transition-colors" type="button">
+<span class="material-symbols-outlined text-base">block</span>
+            Suspend Transaction &amp; Disconnect Call
+          </button>
+<button onclick="triggerDefense('ESCALATE')" class="w-full h-9 px-space-md rounded bg-slate-800 hover:bg-slate-900 text-white font-label-sm text-label-sm font-semibold flex items-center justify-center gap-2 transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">supervisor_account</span>
+            Escalate to Fraud Watchdog Supervisor
+          </button>
+</div>
+<!-- Secondary Analyst Toggles & Whisper Tools -->
+<div class="pt-space-sm border-t border-outline-variant/30 space-y-space-xs">
+<span class="font-label-sm text-label-sm uppercase font-semibold text-secondary block">
+            Tactical Whisper &amp; Evidence Controls
+          </span>
+<button class="w-full py-1.5 px-2.5 rounded bg-surface hover:bg-surface-container border border-outline-variant text-on-surface font-body-sm text-body-sm flex items-center justify-between transition-colors" type="button">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary-container">hearing</span>
+<span>Whisper to Agent: 'Prompt Mother's Maiden'</span>
+</span>
+<span class="font-code-sm text-code-sm text-secondary">Audio Fed</span>
+</button>
+<button class="w-full py-1.5 px-2.5 rounded bg-surface hover:bg-surface-container border border-outline-variant text-on-surface font-body-sm text-body-sm flex items-center justify-between transition-colors" type="button">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary-container">bookmark_add</span>
+<span>Log Incident to Fraud Case #FC-8921</span>
+</span>
+<span class="font-code-sm text-code-sm text-secondary">Ready</span>
+</button>
+<button class="w-full py-1.5 px-2.5 rounded bg-surface hover:bg-surface-container border border-outline-variant text-on-surface font-body-sm text-body-sm flex items-center justify-between transition-colors" type="button">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary-container">fingerprint</span>
+<span>Quarantine Enrolled Voiceprint Biometric</span>
+</span>
+<span class="font-code-sm text-code-sm text-error">Lock</span>
+</button>
+</div>
+<!-- Compliance & Regulatory Footer Note -->
+<div class="pt-space-xs flex items-start gap-2 text-[11px] text-slate-500 font-code-sm text-code-sm">
+<span class="material-symbols-outlined text-sm text-slate-400 shrink-0 mt-0.5">policy</span>
+<span>Analyst ID: ER-9041 logged. All evidentiary actions are cryptographically sealed to SOC-2 Type II audit trail.</span>
+</div>
+</div>
+</div>
+</div>
+</div></div></main></div>
+<script>
+function triggerDefense(action) {
+    fetch('/api/v1/transactions/TX-CFO-25L-001/action', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({action: action, notes: 'Triggered from Sentinel SOC Live Inspection'})
+    }).then(r => r.json()).then(d => {
+        alert('Defensive Action [' + action + '] dispatched! New Status: ' + d.status);
+    }).catch(e => {
+        alert('Defensive Action [' + action + '] executed locally.');
+    });
+}
+</script>
+</body></html>

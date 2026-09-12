@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-container-lowest":"#ffffff","surface-variant":"#d3e4fe","tertiary-container":"#3e4c60","primary":"#00288e","on-secondary-fixed":"#131b2e","inverse-surface":"#213145","on-tertiary-fixed":"#0d1c2e","secondary-fixed-dim":"#bec6e0","on-surface-variant":"#444653","on-error-container":"#93000a","surface-container-high":"#dce9ff","on-secondary-container":"#5c647a","on-primary-container":"#a8b8ff","on-tertiary-fixed-variant":"#3a485b","surface-tint":"#3755c3","on-secondary":"#ffffff","on-tertiary":"#ffffff","surface-bright":"#f8f9ff","secondary-fixed":"#dae2fd","primary-container":"#1e40af","primary-fixed-dim":"#b8c4ff","on-tertiary-container":"#aebcd4","secondary":"#565e74","surface":"#f8f9ff","on-secondary-fixed-variant":"#3f465c","tertiary-fixed-dim":"#b9c7df","on-primary":"#ffffff","inverse-primary":"#b8c4ff","on-background":"#0b1c30","error-container":"#ffdad6","on-primary-fixed-variant":"#173bab","inverse-on-surface":"#eaf1ff","tertiary":"#273548","surface-dim":"#cbdbf5","secondary-container":"#dae2fd","surface-container-low":"#eff4ff","outline":"#757684","outline-variant":"#c4c5d5","primary-fixed":"#dde1ff","surface-container-highest":"#d3e4fe","surface-container":"#e5eeff","error":"#ba1a1a","background":"#f8f9ff","on-primary-fixed":"#001453","on-surface":"#0b1c30","on-error":"#ffffff","tertiary-fixed":"#d5e3fc"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"margin":"1rem","space-xs":"0.25rem","space-2xs":"0.125rem","space-2xl":"2rem","space-md":"0.75rem","margin-desktop":"2rem","gutter-desktop":"1.5rem","space-sm":"0.5rem","space-xl":"1.5rem","gutter":"1rem","space-lg":"1rem"},"fontFamily":{"code-sm":["JetBrains Mono"],"headline-lg":["Inter"],"body-sm":["Inter"],"label-md":["Inter"],"body-lg":["Inter"],"label-sm":["Inter"],"headline-lg-mobile":["Inter"],"body-md":["Inter"],"headline-md":["Inter"],"label-lg":["Inter"],"code-md":["JetBrains Mono"],"headline-sm":["Inter"]},"fontSize":{"code-sm":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0em","fontWeight":"400"}],"headline-lg":["1.75rem",{"lineHeight":"2.125rem","letterSpacing":"-0.025em","fontWeight":"600"}],"body-sm":["0.8125rem",{"lineHeight":"1.125rem","letterSpacing":"0em","fontWeight":"400"}],"label-md":["0.75rem",{"lineHeight":"0.875rem","letterSpacing":"0.01em","fontWeight":"500"}],"body-lg":["0.9375rem",{"lineHeight":"1.375rem","letterSpacing":"-0.01em","fontWeight":"400"}],"label-sm":["0.6875rem",{"lineHeight":"0.75rem","letterSpacing":"0.04em","fontWeight":"600"}],"headline-lg-mobile":["1.375rem",{"lineHeight":"1.75rem","letterSpacing":"-0.02em","fontWeight":"600"}],"body-md":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"-0.005em","fontWeight":"400"}],"headline-md":["1.25rem",{"lineHeight":"1.625rem","letterSpacing":"-0.02em","fontWeight":"600"}],"label-lg":["0.8125rem",{"lineHeight":"1rem","letterSpacing":"0em","fontWeight":"500"}],"code-md":["0.8125rem",{"lineHeight":"1.125rem","letterSpacing":"-0.01em","fontWeight":"400"}],"headline-sm":["1rem",{"lineHeight":"1.375rem","letterSpacing":"-0.015em","fontWeight":"600"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest border-r border-outline-variant/40 z-50 flex flex-col justify-between select-none"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm border-b border-outline-variant/30"><img alt="Sentinel SOC Logo" class="h-8 w-auto object-contain" src="/static/assets/sentinel_logo.png" onerror="this.src='https://lh3.googleusercontent.com/aida/AEtjO1USBnh12oqWPIMJBQ6JhsjpImOAVM6sWnNrW1DUQTBdPqCw31gitBvelb7hSzJe_I2cHCcVrAuY8sdKvHiMgmN1H8G64TXgZBtnEnoFLHMQWW8yR0MaaEotOqvjpetnqg2-lBLwQYuUcZXVHcvLyzje0Oxx4XybXZorBfu1HAxtdRJmeiVwJZWLua1QHviZm_9vjRtnxpJUicwhMW3aAsb1D1kupuYtfpQ9-_VdL5Y1Sk_fiWAXpAErkA'"/><div class="flex flex-col"><span class="font-label-lg text-label-lg text-on-surface font-semibold tracking-tight">Sentinel SOC</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Enterprise Trust</span></div></div><div class="px-space-md py-space-sm"><div class="px-space-sm py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Main Operations</div><nav class="space-y-space-2xs mt-space-2xs" data-active-classes="bg-primary-container text-on-primary font-semibold"><a aria-current="page" class="flex items-center justify-between px-space-md py-space-sm rounded transition-colors bg-primary-container text-on-primary font-semibold" data-path="overview" href="/screens/overview.html"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">dashboard</span><span>Overview</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="live-calls" href="/screens/live_inspection.html"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">phone_in_talk</span><span>Live Calls</span></div><span class="font-label-sm text-label-sm bg-primary-container text-on-primary px-1.5 py-0.5 rounded font-medium">3 Active</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="risk-events" href="/screens/live_inspection.html"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">drive_file_rename_outline</span><span>Risk Events</span></div><span class="font-label-sm text-label-sm bg-error-container text-on-error-container px-1.5 py-0.5 rounded font-medium">12</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="call-history" href="/screens/overview.html"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">history</span><span>Call History</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="analytics-&amp;-trends" href="/screens/analytics.html"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">insights</span><span>Analytics &amp; Trends</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="command-center" href="/"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">shield</span><span>Command Center</span></div></a></nav></div></div><div class="p-space-md border-t border-outline-variant/30 bg-surface-container-low"><div class="bg-surface-container-lowest p-space-sm rounded border border-outline-variant/40 space-y-space-xs"><div class="flex items-center gap-space-xs"><span class="h-2 w-2 rounded-full bg-emerald-600 animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface font-semibold truncate">Core ML Models Operational</span></div><div class="flex items-center justify-between font-code-sm text-code-sm text-secondary pt-space-2xs"><span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">speed</span>42ms</span><span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">bolt</span>99.98% SLA</span></div></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest border-b border-outline-variant/40 z-40 px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-sm"><span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Sentinel Security</span><span class="text-outline font-label-sm text-label-sm">/</span><span class="font-label-lg text-label-lg text-on-surface font-semibold">Operational Console</span></div><div class="flex-1 max-w-xl mx-space-xl"><div class="relative flex items-center w-full"><span class="material-symbols-outlined absolute left-space-sm text-secondary text-sm pointer-events-none">search</span><input class="w-full h-8 pl-9 pr-14 bg-surface rounded border border-outline-variant text-on-surface placeholder:text-secondary font-body-sm text-body-sm focus:outline-none focus:border-primary-container transition-colors" placeholder="Search calls, caller IDs, claimed identity, or transaction hashes..." type="text"/><div class="absolute right-space-sm flex items-center pointer-events-none"><kbd class="font-code-sm text-code-sm bg-surface-container px-1.5 py-0.5 rounded text-secondary border border-outline-variant/40">⌘K</kbd></div></div></div><div class="flex items-center gap-space-lg"><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded border border-outline-variant/40 font-code-sm text-code-sm text-on-surface-variant"><span class="h-1.5 w-1.5 rounded-full bg-emerald-600"></span><span>PRODUCTION</span><span class="text-outline">•</span><span>US-EAST-1</span></div><button class="relative p-1.5 text-secondary hover:text-on-surface rounded hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-xl">notifications</span><span class="absolute top-1 right-1 h-2 w-2 bg-error rounded-full ring-2 ring-surface-container-lowest"></span></button><div class="h-6 w-px bg-outline-variant/40"></div><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant/40" src="/static/assets/elena_rostova.jpg" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuDA10bTxo9bcqMPdg-zinhKXNIaVtnBt-njLhz0HdeXBwwMf_0RO8ii5dcJlT1no5clTrBdo8FqRtQuXrGZvVlwOsyB9EQ6ImMzJsBuitWb-u4bxYnvEP-Tht9WHKXCAasK9LkRO-YkR1GiaAeoQ4pacQunCNv72hwjOszQg_niun8c3NJ38iNQworQ7IMLu4mOYwLfcZ3IkmeIAQ-BnK9LCZIcspWhJTGkyOOmJikr1l0olrZkxNE'"/><div class="flex flex-col text-left"><div class="flex items-center gap-space-xs"><span class="font-label-md text-label-md text-on-surface font-semibold leading-tight">Elena Rostova</span><span class="font-label-sm text-label-sm bg-secondary-container text-on-secondary-fixed-variant px-1 rounded font-medium">Global Trust Bank</span></div><span class="font-label-sm text-label-sm text-secondary leading-tight">Sr. Fraud Risk Officer</span></div></div></div></header><main class="relative pt-16 bg-surface min-h-screen"><div class="w-full px-space-lg py-space-lg"><div class="flex flex-col w-full space-y-space-lg">
+<!-- Operational Telemetry Header & Time Filters -->
+<div class="bg-surface-container-lowest rounded shadow-sm p-space-md flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-1 rounded">
+<span class="h-2 w-2 rounded-full bg-emerald-600"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface font-semibold">Engines Active</span>
+</div>
+<div class="flex flex-wrap items-center gap-x-space-md gap-y-1 font-code-sm text-code-sm text-secondary">
+<span>Model: <strong class="text-on-surface font-medium">v4.2.1-prod</strong></span>
+<span>•</span>
+<span>Avg Latency: <strong class="text-on-surface font-medium">38ms</strong></span>
+<span>•</span>
+<span>Failover: <strong class="text-on-surface font-medium">Hot Standby (US-Central)</strong></span>
+<span>•</span>
+<span>Inference Load: <strong class="text-on-surface font-medium">28.4%</strong></span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-xs">
+<div class="inline-flex bg-surface-container-low p-0.5 rounded">
+<button class="px-space-sm py-1 font-label-sm text-label-sm font-semibold rounded bg-surface-container-lowest text-primary shadow-sm" type="button">Live Feed</button>
+<button class="px-space-sm py-1 font-label-sm text-label-sm text-secondary hover:text-on-surface transition-colors" type="button">Past 1 Hr</button>
+<button class="px-space-sm py-1 font-label-sm text-label-sm text-secondary hover:text-on-surface transition-colors" type="button">Past 24 Hrs</button>
+<button class="px-space-sm py-1 font-label-sm text-label-sm text-secondary hover:text-on-surface transition-colors" type="button">Past 7 Days</button>
+</div>
+<button class="inline-flex items-center gap-1.5 px-space-md py-1 bg-surface-container-low text-on-surface hover:bg-surface-container font-label-sm text-label-sm font-medium rounded transition-colors" type="button">
+<span class="material-symbols-outlined text-sm text-secondary">download</span>
+<span>Export Audit Report</span>
+</button>
+</div>
+</div>
+<!-- KPI Metrics Strip -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- KPI 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Active Monitored Calls</span>
+<span class="material-symbols-outlined text-secondary text-base">graphic_eq</span>
+</div>
+<div class="mt-space-sm">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface font-semibold">48</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">concurrent streams</span>
+</div>
+<div class="mt-2 flex items-center justify-between font-body-sm text-body-sm text-secondary">
+<span class="inline-flex items-center gap-1">
+<span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+            4 under active acoustic triage
+          </span>
+<span class="font-code-sm text-code-sm text-on-surface-variant font-medium">Peak: 64</span>
+</div>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">High-Risk Events (24h)</span>
+<span class="material-symbols-outlined text-error text-base">warning</span>
+</div>
+<div class="mt-space-sm">
+<div class="flex items-baseline gap-space-sm">
+<span class="font-headline-lg text-headline-lg text-on-surface font-semibold">14</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
+            +3 in last hour
+          </span>
+</div>
+<div class="mt-2 flex items-center justify-between font-body-sm text-body-sm text-secondary">
+<span>9 synthetic voice injections blocked</span>
+<span class="font-code-sm text-code-sm text-error font-medium">7.1% rate</span>
+</div>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Synthetic Speech Detection</span>
+<span class="material-symbols-outlined text-emerald-700 text-base">verified</span>
+</div>
+<div class="mt-space-sm">
+<div class="flex items-baseline gap-space-sm">
+<span class="font-headline-lg text-headline-lg text-on-surface font-semibold">99.4%</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 font-label-sm text-label-sm font-semibold">
+            AUROC 0.998
+          </span>
+</div>
+<div class="mt-2 flex items-center justify-between font-body-sm text-body-sm text-secondary">
+<span>False positive rate: 0.12%</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant font-medium">21,490 evals</span>
+</div>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Intervention Accuracy</span>
+<span class="material-symbols-outlined text-primary text-base">timer</span>
+</div>
+<div class="mt-space-sm">
+<div class="flex items-baseline gap-space-sm">
+<span class="font-headline-lg text-headline-lg text-on-surface font-semibold">98.2%</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-surface-container text-primary font-label-sm text-label-sm font-semibold">
+            Triage Level 1
+          </span>
+</div>
+<div class="mt-2 flex items-center justify-between font-body-sm text-body-sm text-secondary">
+<span>Avg intervention time: 4.2s</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant font-medium">SLA: &lt; 6.0s</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Middle Dual Section: Chart & Live Interventions -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md">
+<!-- Left 60%: Risk Trends & Call Inflow -->
+<div class="lg:col-span-7 xl:col-span-8 bg-surface-container-lowest rounded shadow-sm p-space-md flex flex-col justify-between">
+<div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs pb-space-sm">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Risk Trends &amp; Call Inflow</span>
+<span class="font-label-sm text-label-sm bg-surface-container text-secondary px-1.5 py-0.5 rounded font-mono">24H TIMELINE</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mt-0.5">Continuous acoustic packet telemetry and anomaly classification breakdown</p>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-secondary">
+<span class="h-2.5 w-2.5 rounded-sm bg-slate-400"></span>
+<span>Total Inspected</span>
+</div>
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-secondary">
+<span class="h-2.5 w-2.5 rounded-sm bg-amber-600"></span>
+<span>Elevated Risk</span>
+</div>
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-secondary">
+<span class="h-2.5 w-2.5 rounded-sm bg-error"></span>
+<span>High Risk / Severed</span>
+</div>
+</div>
+</div>
+<!-- Technical Area Chart (Clean SVG, Precise Enterprise Gridlines) -->
+<div class="relative w-full h-56 pt-2 select-none">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 740 210">
+<defs>
+<lineargradient id="totalCallsFill" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#64748b" stop-opacity="0.12"></stop>
+<stop offset="100%" stop-color="#64748b" stop-opacity="0.0"></stop>
+</lineargradient>
+<lineargradient id="elevatedFill" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#d97706" stop-opacity="0.15"></stop>
+<stop offset="100%" stop-color="#d97706" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<!-- Grid horizontal lines -->
+<line opacity="0.6" stroke="#cbd5e1" stroke-dasharray="3 3" stroke-width="1" x1="40" x2="730" y1="20" y2="20"></line>
+<line opacity="0.6" stroke="#cbd5e1" stroke-dasharray="3 3" stroke-width="1" x1="40" x2="730" y1="65" y2="65"></line>
+<line opacity="0.6" stroke="#cbd5e1" stroke-dasharray="3 3" stroke-width="1" x1="40" x2="730" y1="110" y2="110"></line>
+<line opacity="0.6" stroke="#cbd5e1" stroke-dasharray="3 3" stroke-width="1" x1="40" x2="730" y1="155" y2="155"></line>
+<line stroke="#94a3b8" stroke-width="1" x1="40" x2="730" y1="185" y2="185"></line>
+<!-- Y Axis Coordinates -->
+<text fill="#64748b" font-family="JetBrains Mono" font-size="10" text-anchor="end" x="32" y="24">450</text>
+<text fill="#64748b" font-family="JetBrains Mono" font-size="10" text-anchor="end" x="32" y="69">300</text>
+<text fill="#64748b" font-family="JetBrains Mono" font-size="10" text-anchor="end" x="32" y="114">150</text>
+<text fill="#64748b" font-family="JetBrains Mono" font-size="10" text-anchor="end" x="32" y="159">50</text>
+<text fill="#64748b" font-family="JetBrains Mono" font-size="10" text-anchor="end" x="32" y="188">0</text>
+<!-- Total Calls Inspected (Slate Area + Path) -->
+<path d="M 45 140 Q 110 120 160 95 T 280 80 T 400 55 T 510 65 T 620 40 L 725 35 L 725 185 L 45 185 Z" fill="url(#totalCallsFill)"></path>
+<path d="M 45 140 Q 110 120 160 95 T 280 80 T 400 55 T 510 65 T 620 40 L 725 35" fill="none" stroke="#64748b" stroke-linecap="round" stroke-width="2"></path>
+<!-- Elevated Risk Calls (Amber Area + Path) -->
+<path d="M 45 175 Q 110 170 160 160 T 280 150 T 400 135 T 510 145 T 620 125 L 725 120 L 725 185 L 45 185 Z" fill="url(#elevatedFill)"></path>
+<path d="M 45 175 Q 110 170 160 160 T 280 150 T 400 135 T 510 145 T 620 125 L 725 120" fill="none" stroke="#d97706" stroke-linecap="round" stroke-width="1.8"></path>
+<!-- High Risk Injections (Restrained Red Single Path) -->
+<path d="M 45 182 Q 110 180 160 178 T 280 172 T 400 165 T 510 170 T 620 158 L 725 152" fill="none" stroke="#ba1a1a" stroke-linecap="round" stroke-width="2"></path>
+<!-- Highlight marker points -->
+<circle cx="620" cy="40" fill="#1e40af" r="3"></circle>
+<circle cx="620" cy="125" fill="#d97706" r="3"></circle>
+<circle cx="620" cy="158" fill="#ba1a1a" r="3.5" stroke="#ffffff" stroke-width="1"></circle>
+<!-- Annotation Flag -->
+<rect fill="#0f172a" height="20" rx="2" width="70" x="585" y="12"></rect>
+<text fill="#ffffff" font-family="JetBrains Mono" font-size="9" text-anchor="middle" x="620" y="26">14:00 (Peak)</text>
+<line stroke="#0f172a" stroke-width="1" x1="620" x2="620" y1="32" y2="40"></line>
+</svg>
+</div>
+<!-- X-Axis Timeline Markers -->
+<div class="flex justify-between pl-10 pr-2 pt-1 font-code-sm text-code-sm text-secondary">
+<span>00:00</span>
+<span>04:00</span>
+<span>08:00</span>
+<span>12:00</span>
+<span>16:00</span>
+<span>20:00</span>
+<span>Now (Live)</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-low p-space-sm rounded flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-base">analytics</span>
+<span class="font-body-sm text-body-sm text-on-surface">Peak synthetic vector injection identified between <strong class="font-semibold">13:40 - 14:15 UTC</strong> (Banking IVR Target)</span>
+</div>
+<button class="font-label-sm text-label-sm text-primary font-semibold hover:underline" type="button">View Forensic Incident Logs →</button>
+</div>
+</div>
+<!-- Right 40%: Live High-Priority Interventions -->
+<div class="lg:col-span-5 xl:col-span-4 bg-surface-container-lowest rounded shadow-sm p-space-md flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="h-2.5 w-2.5 rounded-full bg-error animate-pulse"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Live High-Priority Alerts</span>
+</div>
+<span class="font-label-sm text-label-sm bg-error-container text-on-error-container px-2 py-0.5 rounded font-semibold">3 Requiring Action</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary">Acoustic anomaly score threshold exceeded (&gt; 0.70 p-value)</p>
+<!-- Live Interventions Stream -->
+<div class="mt-space-sm space-y-space-xs">
+<!-- Case 1 -->
+<div class="bg-surface p-space-sm rounded border-l-2 border-error hover:bg-surface-container-low transition-colors">
+<div class="flex items-start justify-between gap-space-xs">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-code-sm text-code-sm font-semibold text-on-surface">CALL #8492</span>
+<span class="font-label-sm text-label-sm bg-error-container text-on-error-container px-1 rounded font-medium">CRITICAL</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface font-medium mt-0.5">Arthur Pendelton</div>
+<div class="font-label-sm text-label-sm text-secondary">Private Wealth • $4.2M Portfolio</div>
+</div>
+<div class="text-right">
+<span class="font-code-sm text-code-sm text-error font-semibold">p = 0.89</span>
+<div class="font-label-sm text-label-sm text-secondary">Synthetic Score</div>
+</div>
+</div>
+<!-- Micro Forensic Metric -->
+<div class="mt-2 pt-2 bg-surface-container-lowest/50 rounded px-2 py-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-error font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">mic_off</span> Voice Clone Vector (ElevenLabs Model)
+                </span>
+<span class="font-code-sm text-code-sm text-secondary">03:12 Active</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-1.5 overflow-hidden">
+<div class="bg-error h-full rounded-full" style="width: 89%;"></div>
+</div>
+</div>
+<div class="mt-space-xs flex items-center justify-end gap-space-xs">
+<button class="px-space-sm py-1 bg-surface-container-lowest text-on-surface hover:bg-surface-container font-label-sm text-label-sm rounded font-medium transition-colors" type="button">
+                Escalate
+              </button>
+<a href="/screens/live_inspection.html" class="px-space-sm py-1 bg-primary text-on-primary hover:bg-primary-container font-label-sm text-label-sm rounded font-medium transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">visibility</span>
+                Inspect Live
+              </a>
+</div>
+</div>
+<!-- Case 2 -->
+<div class="bg-surface p-space-sm rounded border-l-2 border-amber-600 hover:bg-surface-container-low transition-colors">
+<div class="flex items-start justify-between gap-space-xs">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-code-sm text-code-sm font-semibold text-on-surface">CALL #8487</span>
+<span class="font-label-sm text-label-sm bg-amber-50 text-amber-800 px-1 rounded font-medium">ELEVATED</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface font-medium mt-0.5">Dr. Evelyn Vance</div>
+<div class="font-label-sm text-label-sm text-secondary">Corporate Treasury • Authorizer</div>
+</div>
+<div class="text-right">
+<span class="font-code-sm text-code-sm text-amber-700 font-semibold">p = 0.74</span>
+<div class="font-label-sm text-label-sm text-secondary">Synthetic Score</div>
+</div>
+</div>
+<div class="mt-2 pt-2 bg-surface-container-lowest/50 rounded px-2 py-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-amber-800 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">replay</span> Replay &amp; Acoustic Discontinuity
+                </span>
+<span class="font-code-sm text-code-sm text-secondary">01:45 Active</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-1.5 overflow-hidden">
+<div class="bg-amber-600 h-full rounded-full" style="width: 74%;"></div>
+</div>
+</div>
+<div class="mt-space-xs flex items-center justify-end gap-space-xs">
+<button class="px-space-sm py-1 bg-surface-container-lowest text-on-surface hover:bg-surface-container font-label-sm text-label-sm rounded font-medium transition-colors" type="button">
+                Hold Call
+              </button>
+<a href="/screens/live_inspection.html" class="px-space-sm py-1 bg-primary text-on-primary hover:bg-primary-container font-label-sm text-label-sm rounded font-medium transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">visibility</span>
+                Inspect Live
+              </a>
+</div>
+</div>
+<!-- Case 3 -->
+<div class="bg-surface p-space-sm rounded border-l-2 border-amber-600 hover:bg-surface-container-low transition-colors">
+<div class="flex items-start justify-between gap-space-xs">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-code-sm text-code-sm font-semibold text-on-surface">CALL #8479</span>
+<span class="font-label-sm text-label-sm bg-amber-50 text-amber-800 px-1 rounded font-medium">CONTEXT RISK</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface font-medium mt-0.5">Marcus Sterling</div>
+<div class="font-label-sm text-label-sm text-secondary">Retail Priority • Wire Desk</div>
+</div>
+<div class="text-right">
+<span class="font-code-sm text-code-sm text-amber-700 font-semibold">p = 0.82</span>
+<div class="font-label-sm text-label-sm text-secondary">Context Risk</div>
+</div>
+</div>
+<div class="mt-2 pt-2 bg-surface-container-lowest/50 rounded px-2 py-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-amber-800 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">send_money</span> Rapid Wire Transfer ($185k)
+                </span>
+<span class="font-code-sm text-code-sm text-secondary">00:54 Active</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-1.5 overflow-hidden">
+<div class="bg-amber-600 h-full rounded-full" style="width: 82%;"></div>
+</div>
+</div>
+<div class="mt-space-xs flex items-center justify-end gap-space-xs">
+<a href="/screens/live_inspection.html" class="px-space-sm py-1 bg-primary text-on-primary hover:bg-primary-container font-label-sm text-label-sm rounded font-medium transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">visibility</span>
+                Inspect Live
+              </a>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-space-sm mt-space-xs text-center">
+<button class="w-full py-1.5 bg-surface-container text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm font-semibold rounded transition-colors" type="button">
+          View All Suspended Sessions (14)
+        </button>
+</div>
+</div>
+</div>
+<!-- Bottom Section: Call Triaging Table -->
+<div class="bg-surface-container-lowest rounded shadow-sm p-space-md">
+<!-- Table Controls Header -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md pb-space-md">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Recent Inflow Triaging &amp; Forensic Evaluation</span>
+<span class="font-label-sm text-label-sm bg-surface-container text-secondary px-2 py-0.5 rounded font-mono">142 TOTAL TODAY</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mt-0.5">Real-time inference queue across all inbound telephony gateways</p>
+</div>
+<!-- Filters & Actions -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2.5 top-1.5 text-secondary text-sm pointer-events-none">search</span>
+<input class="h-8 pl-8 pr-3 bg-surface-container-low rounded text-on-surface placeholder:text-secondary font-body-sm text-body-sm focus:outline-none focus:bg-surface-container transition-colors w-52" placeholder="Filter by phone, client ID..." type="text"/>
+</div>
+<div class="inline-flex bg-surface-container-low p-0.5 rounded text-secondary">
+<button class="px-space-sm py-1 font-label-sm text-label-sm font-semibold rounded bg-surface-container-lowest text-on-surface shadow-sm" type="button">All Calls</button>
+<button class="px-space-sm py-1 font-label-sm text-label-sm hover:text-on-surface transition-colors" type="button">High Risk</button>
+<button class="px-space-sm py-1 font-label-sm text-label-sm hover:text-on-surface transition-colors" type="button">Elevated</button>
+<button class="px-space-sm py-1 font-label-sm text-label-sm hover:text-on-surface transition-colors" type="button">Verified Safe</button>
+</div>
+<button class="h-8 px-2.5 bg-surface-container-low text-secondary hover:text-on-surface rounded inline-flex items-center gap-1 font-label-sm text-label-sm" type="button">
+<span class="material-symbols-outlined text-sm">refresh</span>
+<span>Refresh</span>
+</button>
+</div>
+</div>
+<!-- Enterprise Tabular Stream -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container-low font-label-sm text-label-sm uppercase tracking-wider text-secondary">
+<th class="py-2.5 px-space-sm">Timestamp</th>
+<th class="py-2.5 px-space-sm">Caller &amp; Gateway Origin</th>
+<th class="py-2.5 px-space-sm">Claimed Identity</th>
+<th class="py-2.5 px-space-sm">Synthetic Prob</th>
+<th class="py-2.5 px-space-sm">Speaker Match</th>
+<th class="py-2.5 px-space-sm">Risk Assessment</th>
+<th class="py-2.5 px-space-sm text-right">Analyst Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<!-- Row 1: High Risk Clone -->
+<tr class="hover:bg-surface-container-lowest/80 transition-colors">
+<td class="py-3 px-space-sm font-code-sm text-code-sm text-secondary whitespace-nowrap">
+              14:28:11 UTC
+              <div class="font-label-sm text-label-sm text-secondary">Dur: 03m 42s</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="font-code-sm text-code-sm font-medium text-on-surface">+1 (415) 882-9014</div>
+<div class="font-label-sm text-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">public</span> VoIP Carrier • San Francisco, US
+              </div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="font-medium text-on-surface">Arthur Pendelton</div>
+<div class="font-label-sm text-label-sm text-primary font-medium">Private Wealth (#AC-90812)</div>
+</td>
+<td class="py-3 px-space-sm w-44">
+<div class="flex items-center justify-between font-code-sm text-code-sm text-error font-semibold">
+<span>p = 0.89</span>
+<span class="font-label-sm text-label-sm text-secondary">Elevated</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-1 overflow-hidden">
+<div class="bg-error h-full rounded-full" style="width: 89%;"></div>
+</div>
+</td>
+<td class="py-3 px-space-sm w-44">
+<div class="flex items-center justify-between font-code-sm text-code-sm text-secondary">
+<span>0.31</span>
+<span class="font-label-sm text-label-sm text-error font-medium">Low Similarity</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-1 overflow-hidden">
+<div class="bg-error h-full rounded-full" style="width: 31%;"></div>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-xs">drive_file_rename_outline</span>
+                High Risk 89/100
+              </span>
+</td>
+<td class="py-3 px-space-sm text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 bg-surface-container-low hover:bg-surface-container text-on-surface rounded font-label-sm text-label-sm font-medium" type="button">
+                  Review
+                </button>
+<button class="px-2 py-1 bg-error hover:bg-error/90 text-on-error rounded font-label-sm text-label-sm font-medium" type="button">
+                  Sever
+                </button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Elevated Replay -->
+<tr class="hover:bg-surface-container-lowest/80 transition-colors">
+<td class="py-3 px-space-sm font-code-sm text-code-sm text-secondary whitespace-nowrap">
+              14:26:44 UTC
+              <div class="font-label-sm text-label-sm text-secondary">Dur: 01m 58s</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="font-code-sm text-code-sm font-medium text-on-surface">+44 20 7946 0992</div>
+<div class="font-label-sm text-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">public</span> Cellular PSTN • London, UK
+              </div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="font-medium text-on-surface">Dr. Evelyn Vance</div>
+<div class="font-label-sm text-label-sm text-secondary">Treasury Commercial (#TC-3301)</div>
+</td>
+<td class="py-3 px-space-sm w-44">
+<div class="flex items-center justify-between font-code-sm text-code-sm text-amber-700 font-semibold">
+<span>p = 0.74</span>
+<span class="font-label-sm text-label-sm text-secondary">Acoustic Dip</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-1 overflow-hidden">
+<div class="bg-amber-600 h-full rounded-full" style="width: 74%;"></div>
+</div>
+</td>
+<td class="py-3 px-space-sm w-44">
+<div class="flex items-center justify-between font-code-sm text-code-sm text-secondary">
+<span>0.68</span>
+<span class="font-label-sm text-label-sm text-amber-700 font-medium">Partial Drift</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-1 overflow-hidden">
+<div class="bg-amber-600 h-full rounded-full" style="width: 68%;"></div>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-amber-50 text-amber-800 font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-xs">flag</span>
+                Elevated 74/100
+              </span>
+</td>
+<td class="py-3 px-space-sm text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 bg-surface-container-low hover:bg-surface-container text-on-surface rounded font-label-sm text-label-sm font-medium" type="button">
+                  Review
+                </button>
+<button class="px-2 py-1 bg-surface-container text-secondary hover:text-on-surface rounded font-label-sm text-label-sm font-medium" type="button">
+                  Challenge MFA
+                </button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Verified Authentic -->
+<tr class="hover:bg-surface-container-lowest/80 transition-colors">
+<td class="py-3 px-space-sm font-code-sm text-code-sm text-secondary whitespace-nowrap">
+              14:24:02 UTC
+              <div class="font-label-sm text-label-sm text-secondary">Dur: 06m 12s</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="font-code-sm text-code-sm font-medium text-on-surface">+1 (212) 555-0144</div>
+<div class="font-label-sm text-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">public</span> Tier-1 Wireline • New York, US
+              </div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="font-medium text-on-surface">Catherine Delacroix</div>
+<div class="font-label-sm text-label-sm text-secondary">Institutional Trustee (#IT-0049)</div>
+</td>
+<td class="py-3 px-space-sm w-44">
+<div class="flex items-center justify-between font-code-sm text-code-sm text-emerald-700 font-semibold">
+<span>p = 0.04</span>
+<span class="font-label-sm text-label-sm text-secondary">Organic</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-1 overflow-hidden">
+<div class="bg-emerald-600 h-full rounded-full" style="width: 4%;"></div>
+</div>
+</td>
+<td class="py-3 px-space-sm w-44">
+<div class="flex items-center justify-between font-code-sm text-code-sm text-secondary">
+<span>0.96</span>
+<span class="font-label-sm text-label-sm text-emerald-700 font-medium">High Match</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-1 overflow-hidden">
+<div class="bg-emerald-600 h-full rounded-full" style="width: 96%;"></div>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-xs">check_circle</span>
+                Verified Safe 04/100
+              </span>
+</td>
+<td class="py-3 px-space-sm text-right whitespace-nowrap">
+<button class="px-2 py-1 bg-surface-container-low hover:bg-surface-container text-secondary rounded font-label-sm text-label-sm font-medium" type="button">
+                Log Details
+              </button>
+</td>
+</tr>
+<!-- Row 4: High Risk / Inject Vector -->
+<tr class="hover:bg-surface-container-lowest/80 transition-colors">
+<td class="py-3 px-space-sm font-code-sm text-code-sm text-secondary whitespace-nowrap">
+              14:21:50 UTC
+              <div class="font-label-sm text-label-sm text-secondary">Dur: 00m 45s</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="font-code-sm text-code-sm font-medium text-on-surface">+61 2 9374 4000</div>
+<div class="font-label-sm text-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">public</span> SIP Proxy • Sydney, AU
+              </div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="font-medium text-on-surface">Rajiv Narang</div>
+<div class="font-label-sm text-label-sm text-secondary">Retail Premier (#RP-88210)</div>
+</td>
+<td class="py-3 px-space-sm w-44">
+<div class="flex items-center justify-between font-code-sm text-code-sm text-error font-semibold">
+<span>p = 0.94</span>
+<span class="font-label-sm text-label-sm text-secondary">Synthetic</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-1 overflow-hidden">
+<div class="bg-error h-full rounded-full" style="width: 94%;"></div>
+</div>
+</td>
+<td class="py-3 px-space-sm w-44">
+<div class="flex items-center justify-between font-code-sm text-code-sm text-secondary">
+<span>0.19</span>
+<span class="font-label-sm text-label-sm text-error font-medium">Anomaly</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-1 overflow-hidden">
+<div class="bg-error h-full rounded-full" style="width: 19%;"></div>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-xs">drive_file_rename_outline</span>
+                High Risk 94/100
+              </span>
+</td>
+<td class="py-3 px-space-sm text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 bg-surface-container-low hover:bg-surface-container text-on-surface rounded font-label-sm text-label-sm font-medium" type="button">
+                  Review
+                </button>
+<button class="px-2 py-1 bg-error hover:bg-error/90 text-on-error rounded font-label-sm text-label-sm font-medium" type="button">
+                  Sever
+                </button>
+</div>
+</td>
+</tr>
+<!-- Row 5: Verified Authentic Corporate -->
+<tr class="hover:bg-surface-container-lowest/80 transition-colors">
+<td class="py-3 px-space-sm font-code-sm text-code-sm text-secondary whitespace-nowrap">
+              14:19:33 UTC
+              <div class="font-label-sm text-label-sm text-secondary">Dur: 04m 10s</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="font-code-sm text-code-sm font-medium text-on-surface">+1 (312) 555-0819</div>
+<div class="font-label-sm text-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">public</span> Direct Fiber PBX • Chicago, US
+              </div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="font-medium text-on-surface">Helena Bergstrom</div>
+<div class="font-label-sm text-label-sm text-secondary">Global FX Desk (#FX-4102)</div>
+</td>
+<td class="py-3 px-space-sm w-44">
+<div class="flex items-center justify-between font-code-sm text-code-sm text-emerald-700 font-semibold">
+<span>p = 0.08</span>
+<span class="font-label-sm text-label-sm text-secondary">Organic</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-1 overflow-hidden">
+<div class="bg-emerald-600 h-full rounded-full" style="width: 8%;"></div>
+</div>
+</td>
+<td class="py-3 px-space-sm w-44">
+<div class="flex items-center justify-between font-code-sm text-code-sm text-secondary">
+<span>0.91</span>
+<span class="font-label-sm text-label-sm text-emerald-700 font-medium">Strong Match</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-1 overflow-hidden">
+<div class="bg-emerald-600 h-full rounded-full" style="width: 91%;"></div>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-xs">check_circle</span>
+                Verified Safe 08/100
+              </span>
+</td>
+<td class="py-3 px-space-sm text-right whitespace-nowrap">
+<button class="px-2 py-1 bg-surface-container-low hover:bg-surface-container text-secondary rounded font-label-sm text-label-sm font-medium" type="button">
+                Log Details
+              </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination & Audit Footer -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm pt-space-md border-t border-outline-variant/30 text-secondary font-label-sm text-label-sm">
+<div>
+        Showing <span class="font-medium text-on-surface">1 - 5</span> of <span class="font-medium text-on-surface">142</span> active sessions logged today
+      </div>
+<div class="inline-flex items-center gap-1">
+<button class="px-2.5 py-1 bg-surface-container-low text-secondary rounded hover:bg-surface-container disabled:opacity-50" disabled="" type="button">Previous</button>
+<button class="px-2.5 py-1 bg-primary text-on-primary rounded font-semibold" type="button">1</button>
+<button class="px-2.5 py-1 bg-surface-container-low text-on-surface rounded hover:bg-surface-container" type="button">2</button>
+<button class="px-2.5 py-1 bg-surface-container-low text-on-surface rounded hover:bg-surface-container" type="button">3</button>
+<span class="px-1 text-secondary">...</span>
+<button class="px-2.5 py-1 bg-surface-container-low text-on-surface rounded hover:bg-surface-container" type="button">29</button>
+<button class="px-2.5 py-1 bg-surface-container-low text-on-surface rounded hover:bg-surface-container" type="button">Next</button>
+</div>
+</div>
+</div>
+</div></div></main></div></body></html>

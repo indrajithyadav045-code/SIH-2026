@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-container-lowest":"#ffffff","surface-variant":"#d3e4fe","tertiary-container":"#3e4c60","primary":"#00288e","on-secondary-fixed":"#131b2e","inverse-surface":"#213145","on-tertiary-fixed":"#0d1c2e","secondary-fixed-dim":"#bec6e0","on-surface-variant":"#444653","on-error-container":"#93000a","surface-container-high":"#dce9ff","on-secondary-container":"#5c647a","on-primary-container":"#a8b8ff","on-tertiary-fixed-variant":"#3a485b","surface-tint":"#3755c3","on-secondary":"#ffffff","on-tertiary":"#ffffff","surface-bright":"#f8f9ff","secondary-fixed":"#dae2fd","primary-container":"#1e40af","primary-fixed-dim":"#b8c4ff","on-tertiary-container":"#aebcd4","secondary":"#565e74","surface":"#f8f9ff","on-secondary-fixed-variant":"#3f465c","tertiary-fixed-dim":"#b9c7df","on-primary":"#ffffff","inverse-primary":"#b8c4ff","on-background":"#0b1c30","error-container":"#ffdad6","on-primary-fixed-variant":"#173bab","inverse-on-surface":"#eaf1ff","tertiary":"#273548","surface-dim":"#cbdbf5","secondary-container":"#dae2fd","surface-container-low":"#eff4ff","outline":"#757684","outline-variant":"#c4c5d5","primary-fixed":"#dde1ff","surface-container-highest":"#d3e4fe","surface-container":"#e5eeff","error":"#ba1a1a","background":"#f8f9ff","on-primary-fixed":"#001453","on-surface":"#0b1c30","on-error":"#ffffff","tertiary-fixed":"#d5e3fc"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"margin":"1rem","space-xs":"0.25rem","space-2xs":"0.125rem","space-2xl":"2rem","space-md":"0.75rem","margin-desktop":"2rem","gutter-desktop":"1.5rem","space-sm":"0.5rem","space-xl":"1.5rem","gutter":"1rem","space-lg":"1rem"},"fontFamily":{"code-sm":["JetBrains Mono"],"headline-lg":["Inter"],"body-sm":["Inter"],"label-md":["Inter"],"body-lg":["Inter"],"label-sm":["Inter"],"headline-lg-mobile":["Inter"],"body-md":["Inter"],"headline-md":["Inter"],"label-lg":["Inter"],"code-md":["JetBrains Mono"],"headline-sm":["Inter"]},"fontSize":{"code-sm":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0em","fontWeight":"400"}],"headline-lg":["1.75rem",{"lineHeight":"2.125rem","letterSpacing":"-0.025em","fontWeight":"600"}],"body-sm":["0.8125rem",{"lineHeight":"1.125rem","letterSpacing":"0em","fontWeight":"400"}],"label-md":["0.75rem",{"lineHeight":"0.875rem","letterSpacing":"0.01em","fontWeight":"500"}],"body-lg":["0.9375rem",{"lineHeight":"1.375rem","letterSpacing":"-0.01em","fontWeight":"400"}],"label-sm":["0.6875rem",{"lineHeight":"0.75rem","letterSpacing":"0.04em","fontWeight":"600"}],"headline-lg-mobile":["1.375rem",{"lineHeight":"1.75rem","letterSpacing":"-0.02em","fontWeight":"600"}],"body-md":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"-0.005em","fontWeight":"400"}],"headline-md":["1.25rem",{"lineHeight":"1.625rem","letterSpacing":"-0.02em","fontWeight":"600"}],"label-lg":["0.8125rem",{"lineHeight":"1rem","letterSpacing":"0em","fontWeight":"500"}],"code-md":["0.8125rem",{"lineHeight":"1.125rem","letterSpacing":"-0.01em","fontWeight":"400"}],"headline-sm":["1rem",{"lineHeight":"1.375rem","letterSpacing":"-0.015em","fontWeight":"600"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest border-r border-outline-variant/40 z-50 flex flex-col justify-between select-none"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm border-b border-outline-variant/30"><img alt="Sentinel SOC Logo" class="h-8 w-auto object-contain" src="/static/assets/sentinel_logo.png" onerror="this.src='https://lh3.googleusercontent.com/aida/AEtjO1USBnh12oqWPIMJBQ6JhsjpImOAVM6sWnNrW1DUQTBdPqCw31gitBvelb7hSzJe_I2cHCcVrAuY8sdKvHiMgmN1H8G64TXgZBtnEnoFLHMQWW8yR0MaaEotOqvjpetnqg2-lBLwQYuUcZXVHcvLyzje0Oxx4XybXZorBfu1HAxtdRJmeiVwJZWLua1QHviZm_9vjRtnxpJUicwhMW3aAsb1D1kupuYtfpQ9-_VdL5Y1Sk_fiWAXpAErkA'"/><div class="flex flex-col"><span class="font-label-lg text-label-lg text-on-surface font-semibold tracking-tight">Sentinel SOC</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Enterprise Trust</span></div></div><div class="px-space-md py-space-sm"><div class="px-space-sm py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Main Operations</div><nav class="space-y-space-2xs mt-space-2xs" data-active-classes="bg-primary-container text-on-primary font-semibold"><a class="flex items-center justify-between px-space-md py-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="overview" href="/screens/overview.html"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">dashboard</span><span>Overview</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="live-calls" href="/screens/live_inspection.html"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">phone_in_talk</span><span>Live Calls</span></div><span class="font-label-sm text-label-sm bg-primary-container text-on-primary px-1.5 py-0.5 rounded font-medium">3 Active</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="risk-events" href="/screens/live_inspection.html"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">drive_file_rename_outline</span><span>Risk Events</span></div><span class="font-label-sm text-label-sm bg-error-container text-on-error-container px-1.5 py-0.5 rounded font-medium">12</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="call-history" href="/screens/overview.html"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">history</span><span>Call History</span></div></a><a aria-current="page" class="flex items-center justify-between px-space-md py-space-sm rounded transition-colors bg-primary-container text-on-primary font-semibold" data-path="analytics-&amp;-trends" href="/screens/analytics.html"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">insights</span><span>Analytics &amp; Trends</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="command-center" href="/"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">shield</span><span>Command Center</span></div></a></nav></div></div><div class="p-space-md border-t border-outline-variant/30 bg-surface-container-low"><div class="bg-surface-container-lowest p-space-sm rounded border border-outline-variant/40 space-y-space-xs"><div class="flex items-center gap-space-xs"><span class="h-2 w-2 rounded-full bg-emerald-600 animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface font-semibold truncate">Core ML Models Operational</span></div><div class="flex items-center justify-between font-code-sm text-code-sm text-secondary pt-space-2xs"><span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">speed</span>42ms</span><span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">bolt</span>99.98% SLA</span></div></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest border-b border-outline-variant/40 z-40 px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-sm"><span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Sentinel Security</span><span class="text-outline font-label-sm text-label-sm">/</span><span class="font-label-lg text-label-lg text-on-surface font-semibold">Operational Console</span></div><div class="flex-1 max-w-xl mx-space-xl"><div class="relative flex items-center w-full"><span class="material-symbols-outlined absolute left-space-sm text-secondary text-sm pointer-events-none">search</span><input class="w-full h-8 pl-9 pr-14 bg-surface rounded border border-outline-variant text-on-surface placeholder:text-secondary font-body-sm text-body-sm focus:outline-none focus:border-primary-container transition-colors" placeholder="Search calls, caller IDs, claimed identity, or transaction hashes..." type="text"/><div class="absolute right-space-sm flex items-center pointer-events-none"><kbd class="font-code-sm text-code-sm bg-surface-container px-1.5 py-0.5 rounded text-secondary border border-outline-variant/40">⌘K</kbd></div></div></div><div class="flex items-center gap-space-lg"><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded border border-outline-variant/40 font-code-sm text-code-sm text-on-surface-variant"><span class="h-1.5 w-1.5 rounded-full bg-emerald-600"></span><span>PRODUCTION</span><span class="text-outline">•</span><span>US-EAST-1</span></div><button class="relative p-1.5 text-secondary hover:text-on-surface rounded hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-xl">notifications</span><span class="absolute top-1 right-1 h-2 w-2 bg-error rounded-full ring-2 ring-surface-container-lowest"></span></button><div class="h-6 w-px bg-outline-variant/40"></div><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant/40" src="/static/assets/elena_rostova.jpg" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuDA10bTxo9bcqMPdg-zinhKXNIaVtnBt-njLhz0HdeXBwwMf_0RO8ii5dcJlT1no5clTrBdo8FqRtQuXrGZvVlwOsyB9EQ6ImMzJsBuitWb-u4bxYnvEP-Tht9WHKXCAasK9LkRO-YkR1GiaAeoQ4pacQunCNv72hwjOszQg_niun8c3NJ38iNQworQ7IMLu4mOYwLfcZ3IkmeIAQ-BnK9LCZIcspWhJTGkyOOmJikr1l0olrZkxNE'"/><div class="flex flex-col text-left"><div class="flex items-center gap-space-xs"><span class="font-label-md text-label-md text-on-surface font-semibold leading-tight">Elena Rostova</span><span class="font-label-sm text-label-sm bg-secondary-container text-on-secondary-fixed-variant px-1 rounded font-medium">Global Trust Bank</span></div><span class="font-label-sm text-label-sm text-secondary leading-tight">Sr. Fraud Risk Officer</span></div></div></div></header><main class="relative pt-16 bg-surface min-h-screen"><div class="w-full px-space-lg py-space-lg"><div class="flex flex-col w-full space-y-space-xl">
+<!-- Header & Control Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md pb-space-xs">
+<div class="space-y-space-2xs">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Forensic Telemetry</span>
+<span class="text-outline-variant">•</span>
+<span class="font-code-sm text-code-sm text-primary-container font-medium">SOC-METRICS-REF: 884-A2</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">Model Intelligence &amp; Fraud Analytics</h1>
+<p class="font-body-md text-body-md text-secondary">Ensemble voice biometrics, generative audio classifiers, and operational calibration metrics.</p>
+</div>
+<!-- Controls -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="inline-flex items-center bg-surface-container-lowest border border-outline-variant/60 rounded px-space-sm py-1.5 shadow-sm">
+<span class="material-symbols-outlined text-secondary text-base mr-1.5">calendar_today</span>
+<span class="font-label-md text-label-md text-on-surface">Past 30 Days:</span>
+<span class="font-code-sm text-code-sm text-secondary ml-1.5">Oct 14 – Nov 12, 2024</span>
+<span class="material-symbols-outlined text-secondary text-base ml-1 cursor-pointer">arrow_drop_down</span>
+</div>
+<div class="inline-flex items-center bg-surface-container-lowest border border-outline-variant/60 rounded px-space-sm py-1.5 shadow-sm">
+<span class="h-2 w-2 rounded-full bg-emerald-600 mr-2"></span>
+<span class="font-label-md text-label-md text-on-surface font-medium">Model:</span>
+<span class="font-code-sm text-code-sm text-primary-container font-semibold ml-1.5">Sentinel-Ensemble v4.2.1-prod</span>
+<span class="material-symbols-outlined text-secondary text-base ml-1 cursor-pointer">expand_more</span>
+</div>
+<button class="inline-flex items-center gap-1.5 bg-primary-container text-on-primary font-label-lg text-label-lg px-space-md py-1.5 rounded shadow-sm hover:bg-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">download</span>
+<span>Export Forensic Dossier</span>
+</button>
+</div>
+</div>
+<!-- Top Metric Row (4 KPI Cards) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div class="bg-surface-container-lowest p-space-md rounded border border-outline-variant/60 shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Discrimination Metric</span>
+<span class="font-code-sm text-code-sm text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded font-medium">+0.003 vs v4.1</span>
+</div>
+<div class="my-space-xs">
+<div class="text-outline text-label-sm font-label-sm font-medium">ROC-AUC SCORE</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">0.994</span>
+<span class="font-code-sm text-code-sm text-secondary font-medium">/ 1.000</span>
+</div>
+</div>
+<div class="space-y-1">
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 99.4%"></div>
+</div>
+<div class="flex justify-between font-code-sm text-code-sm text-secondary">
+<span>Bench: 0.980</span>
+<span>Target: &gt;0.990</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded border border-outline-variant/60 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Triage Fidelity</span>
+<span class="font-code-sm text-code-sm text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded font-medium">Optimal Tier</span>
+</div>
+<div class="my-space-xs">
+<div class="text-outline text-label-sm font-label-sm font-medium">PRECISION @ 1% FPR</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">98.7%</span>
+<span class="font-code-sm text-code-sm text-secondary font-medium">ci: [98.2-99.1]</span>
+</div>
+</div>
+<div class="space-y-1">
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-600 h-full rounded-full" style="width: 98.7%"></div>
+</div>
+<div class="flex justify-between font-code-sm text-code-sm text-secondary">
+<span>Threshold α = 0.88</span>
+<span>1 in 100 False Alarm</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded border border-outline-variant/60 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Operational Speed</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant bg-surface-container px-1.5 py-0.5 rounded font-medium">p99: 68ms</span>
+</div>
+<div class="my-space-xs">
+<div class="text-outline text-label-sm font-label-sm font-medium">AVG INFERENCE LATENCY</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">42</span>
+<span class="font-label-lg text-label-lg text-secondary font-medium">ms</span>
+</div>
+</div>
+<div class="space-y-1">
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 42%"></div>
+</div>
+<div class="flex justify-between font-code-sm text-code-sm text-secondary">
+<span>SLA: &lt;100ms</span>
+<span>Real-time Audio Slice</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded border border-outline-variant/60 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Equilibrium Metric</span>
+<span class="font-code-sm text-code-sm text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded font-medium">-0.12% MoM</span>
+</div>
+<div class="my-space-xs">
+<div class="text-outline text-label-sm font-label-sm font-medium">EER (EQUAL ERROR RATE)</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">0.84%</span>
+<span class="font-code-sm text-code-sm text-secondary font-medium">FPR = FNR</span>
+</div>
+</div>
+<div class="space-y-1">
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-600 h-full rounded-full" style="width: 8.4%"></div>
+</div>
+<div class="flex justify-between font-code-sm text-code-sm text-secondary">
+<span>Banking Standard: &lt;2.0%</span>
+<span>ISO/IEC 19795</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Primary Analytics Grid: 2 Columns on Desktop -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg">
+<!-- Top-Left: Attack Distribution by Vector -->
+<div class="bg-surface-container-lowest p-space-lg rounded border border-outline-variant/60 shadow-sm flex flex-col justify-between space-y-space-md">
+<div class="flex items-start justify-between border-b border-outline-variant/40 pb-space-sm">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Detection Volume &amp; Attack Distribution by Vector</h2>
+<p class="font-body-sm text-body-sm text-secondary">Aggregate classification breakdown across key operational banking divisions (30d).</p>
+</div>
+<span class="material-symbols-outlined text-secondary text-lg">stacked_bar_chart</span>
+</div>
+<!-- Legend -->
+<div class="flex flex-wrap items-center gap-space-md text-label-sm font-label-sm">
+<div class="flex items-center gap-1.5">
+<span class="h-2.5 w-2.5 rounded-sm bg-primary-container"></span>
+<span class="text-on-surface">Synthetic Voice Clones (TTS/VC)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="h-2.5 w-2.5 rounded-sm bg-amber-600"></span>
+<span class="text-on-surface">Audio Splicing / Replay</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="h-2.5 w-2.5 rounded-sm bg-rose-700"></span>
+<span class="text-on-surface">Deepfake Conversational Agents</span>
+</div>
+</div>
+<!-- Stacked Bar Graphic Display -->
+<div class="space-y-space-md pt-space-xs">
+<div class="space-y-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="font-medium text-on-surface">Commercial Banking (Treasury &amp; Wire Authorizations)</span>
+<span class="font-code-sm text-code-sm text-secondary">642 Incidents (45.2%)</span>
+</div>
+<div class="h-6 w-full flex rounded-sm overflow-hidden bg-surface-container">
+<div class="bg-primary-container flex items-center justify-center text-on-primary font-code-sm text-[10px]" style="width: 58%" title="Voice Clones: 372">58%</div>
+<div class="bg-amber-600 flex items-center justify-center text-white font-code-sm text-[10px]" style="width: 14%" title="Splicing: 90">14%</div>
+<div class="bg-rose-700 flex items-center justify-center text-white font-code-sm text-[10px]" style="width: 28%" title="Conversational: 180">28%</div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="font-medium text-on-surface">Retail Banking (Account Takeover &amp; Credential Reset)</span>
+<span class="font-code-sm text-code-sm text-secondary">518 Incidents (36.5%)</span>
+</div>
+<div class="h-6 w-full flex rounded-sm overflow-hidden bg-surface-container">
+<div class="bg-primary-container flex items-center justify-center text-on-primary font-code-sm text-[10px]" style="width: 32%" title="Voice Clones: 166">32%</div>
+<div class="bg-amber-600 flex items-center justify-center text-white font-code-sm text-[10px]" style="width: 48%" title="Splicing: 248">48%</div>
+<div class="bg-rose-700 flex items-center justify-center text-white font-code-sm text-[10px]" style="width: 20%" title="Conversational: 104">20%</div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="font-medium text-on-surface">Wealth Management (High-Net-Worth Line Mandates)</span>
+<span class="font-code-sm text-code-sm text-secondary">260 Incidents (18.3%)</span>
+</div>
+<div class="h-6 w-full flex rounded-sm overflow-hidden bg-surface-container">
+<div class="bg-primary-container flex items-center justify-center text-on-primary font-code-sm text-[10px]" style="width: 65%" title="Voice Clones: 169">65%</div>
+<div class="bg-amber-600 flex items-center justify-center text-white font-code-sm text-[10px]" style="width: 8%" title="Splicing: 21">8%</div>
+<div class="bg-rose-700 flex items-center justify-center text-white font-code-sm text-[10px]" style="width: 27%" title="Conversational: 70">27%</div>
+</div>
+</div>
+</div>
+<div class="pt-space-xs border-t border-outline-variant/30 flex items-center justify-between font-code-sm text-code-sm text-secondary">
+<span>Classification Confidence: 99.4%</span>
+<span>Total Vector Samples: 1,420 attacks</span>
+</div>
+</div>
+<!-- Top-Right: Calibration & Risk Score Distribution -->
+<div class="bg-surface-container-lowest p-space-lg rounded border border-outline-variant/60 shadow-sm flex flex-col justify-between space-y-space-md">
+<div class="flex items-start justify-between border-b border-outline-variant/40 pb-space-sm">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Model Calibration &amp; Risk Score Distribution</h2>
+<p class="font-body-sm text-body-sm text-secondary">Receiver Operating Characteristic (ROC) &amp; empirical risk probability alignment.</p>
+</div>
+<span class="material-symbols-outlined text-secondary text-lg">show_chart</span>
+</div>
+<div class="relative w-full h-48 bg-surface-container-low/60 rounded p-space-sm flex flex-col justify-between border border-outline-variant/30">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 400 150">
+<line stroke="#c4c5d5" stroke-dasharray="3,3" stroke-width="0.75" x1="0" x2="400" y1="0" y2="0"></line>
+<line stroke="#c4c5d5" stroke-dasharray="3,3" stroke-width="0.75" x1="0" x2="400" y1="37.5" y2="37.5"></line>
+<line stroke="#c4c5d5" stroke-dasharray="3,3" stroke-width="0.75" x1="0" x2="400" y1="75" y2="75"></line>
+<line stroke="#c4c5d5" stroke-dasharray="3,3" stroke-width="0.75" x1="0" x2="400" y1="112.5" y2="112.5"></line>
+<line stroke="#757684" stroke-width="1" x1="0" x2="400" y1="150" y2="150"></line>
+<line stroke="#bec6e0" stroke-dasharray="4,4" stroke-width="1" x1="0" x2="400" y1="150" y2="0"></line>
+<path d="M 0 150 L 8 20 L 30 8 L 80 4 L 200 2 L 400 0 L 400 150 Z" fill="#1e40af" fill-opacity="0.04"></path>
+<path d="M 0 150 C 4 35, 25 10, 80 5 C 160 2, 280 1, 400 0" fill="none" stroke="#1e40af" stroke-width="2.25"></path>
+<circle cx="16" cy="18" fill="#dc2626" r="4.5" stroke="#ffffff" stroke-width="1.5"></circle>
+<line stroke="#dc2626" stroke-dasharray="2,2" stroke-width="1" x1="16" x2="16" y1="18" y2="150"></line>
+</svg>
+<div class="absolute left-7 top-5 bg-surface-container-lowest border border-outline-variant/60 rounded px-1.5 py-0.5 shadow-sm text-[11px] font-code-sm text-on-surface">
+<span class="font-semibold text-rose-700">SOC Operating Cutoff</span> (TPR: 99.1%, FPR: 0.94%)
+        </div>
+</div>
+<div class="grid grid-cols-3 gap-space-sm pt-space-xs font-code-sm text-code-sm text-secondary text-center border-t border-outline-variant/30">
+<div class="bg-surface-container-low p-1.5 rounded">
+<div class="text-[10px] text-outline uppercase font-semibold">Brier Calibration</div>
+<div class="font-bold text-on-surface text-body-sm">0.012 (Reliable)</div>
+</div>
+<div class="bg-surface-container-low p-1.5 rounded">
+<div class="text-[10px] text-outline uppercase font-semibold">Youden's Index (J)</div>
+<div class="font-bold text-on-surface text-body-sm">0.982</div>
+</div>
+<div class="bg-surface-container-low p-1.5 rounded">
+<div class="text-[10px] text-outline uppercase font-semibold">Confidence Margin</div>
+<div class="font-bold text-on-surface text-body-sm">±0.4% (99% CI)</div>
+</div>
+</div>
+</div>
+<!-- Bottom-Left: Acoustic Feature Importance Analysis -->
+<div class="bg-surface-container-lowest p-space-lg rounded border border-outline-variant/60 shadow-sm flex flex-col justify-between space-y-space-md">
+<div class="flex items-start justify-between border-b border-outline-variant/40 pb-space-sm">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Acoustic Feature Importance Analysis</h2>
+<p class="font-body-sm text-body-sm text-secondary">SHAP contribution weights to synthetic artifact identification pipeline.</p>
+</div>
+<span class="material-symbols-outlined text-secondary text-lg">equalizer</span>
+</div>
+<div class="space-y-space-md">
+<div class="space-y-1">
+<div class="flex justify-between items-center text-body-sm font-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="font-medium text-on-surface">Spectral Roll-off Variance</span>
+<span class="font-code-sm text-[11px] text-secondary">(Nyquist frequency cutoff anomalies)</span>
+</div>
+<span class="font-code-sm text-code-sm font-semibold text-primary-container">34.0%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 34%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between items-center text-body-sm font-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="font-medium text-on-surface">Glottal Pulse Irregularities</span>
+<span class="font-code-sm text-[11px] text-secondary">(Vocal tract physical boundary bypass)</span>
+</div>
+<span class="font-code-sm text-code-sm font-semibold text-primary-container">28.0%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 28%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between items-center text-body-sm font-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="font-medium text-on-surface">Background Noise Discontinuity</span>
+<span class="font-code-sm text-[11px] text-secondary">(Acoustic envelope room-splicing jumps)</span>
+</div>
+<span class="font-code-sm text-code-sm font-semibold text-primary-container">19.0%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 19%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between items-center text-body-sm font-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="font-medium text-on-surface">Prosody Cadence Anomaly</span>
+<span class="font-code-sm text-[11px] text-secondary">(Generative speech pacing &amp; pause entropy)</span>
+</div>
+<span class="font-code-sm text-code-sm font-semibold text-primary-container">14.0%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 14%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between items-center text-body-sm font-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="font-medium text-on-surface">Room Reverb Mismatch</span>
+<span class="font-code-sm text-[11px] text-secondary">(Synthetic impulse response artifacts)</span>
+</div>
+<span class="font-code-sm text-code-sm font-semibold text-primary-container">5.0%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 5%"></div>
+</div>
+</div>
+</div>
+<div class="pt-space-xs border-t border-outline-variant/30 flex items-center justify-between font-code-sm text-code-sm text-secondary">
+<span>Engine: TreeSHAP Kernel v2.4</span>
+<span class="text-on-surface font-medium">Model Bias Index: &lt;0.002</span>
+</div>
+</div>
+<!-- Bottom-Right: Operational Interventions & Outcome Breakdown -->
+<div class="bg-surface-container-lowest p-space-lg rounded border border-outline-variant/60 shadow-sm flex flex-col justify-between space-y-space-md">
+<div class="flex items-start justify-between border-b border-outline-variant/40 pb-space-sm">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Operational Interventions &amp; Outcome Breakdown</h2>
+<p class="font-body-sm text-body-sm text-secondary">Dispositions across 1,420 system-flagged critical risk sessions.</p>
+</div>
+<span class="material-symbols-outlined text-secondary text-lg">verified_user</span>
+</div>
+<div class="space-y-1.5">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="font-medium text-on-surface">Triage Allocation Summary</span>
+<span class="font-code-sm text-code-sm font-bold text-on-surface">1,420 High-Risk Total</span>
+</div>
+<div class="h-4 w-full flex rounded overflow-hidden bg-surface-container">
+<div class="bg-emerald-600" style="width: 91.2%" title="91.2% Prevented"></div>
+<div class="bg-amber-500" style="width: 7.6%" title="7.6% MFA Resolved"></div>
+<div class="bg-secondary" style="width: 1.2%" title="1.2% False Positives"></div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant/40 font-label-sm text-label-sm text-secondary">
+<th class="py-2 px-space-sm">Operational Disposition</th>
+<th class="py-2 px-space-sm text-right">Volume</th>
+<th class="py-2 px-space-sm text-right">Share</th>
+<th class="py-2 px-space-sm text-right">Financial Exposure Protect</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20 font-code-sm text-code-sm">
+<tr>
+<td class="py-2 px-space-sm flex items-center gap-2">
+<span class="h-2 w-2 rounded-full bg-emerald-600"></span>
+<span class="font-body-sm text-on-surface font-medium">Verified Fraud Prevented</span>
+</td>
+<td class="py-2 px-space-sm text-right text-on-surface">1,295</td>
+<td class="py-2 px-space-sm text-right font-semibold text-emerald-700">91.2%</td>
+<td class="py-2 px-space-sm text-right font-bold text-on-surface">$14.82M</td>
+</tr>
+<tr>
+<td class="py-2 px-space-sm flex items-center gap-2">
+<span class="h-2 w-2 rounded-full bg-amber-500"></span>
+<span class="font-body-sm text-on-surface font-medium">Customer Verified (OOB MFA)</span>
+</td>
+<td class="py-2 px-space-sm text-right text-on-surface">108</td>
+<td class="py-2 px-space-sm text-right text-amber-700 font-semibold">7.6%</td>
+<td class="py-2 px-space-sm text-right text-secondary">$1.14M</td>
+</tr>
+<tr>
+<td class="py-2 px-space-sm flex items-center gap-2">
+<span class="h-2 w-2 rounded-full bg-secondary"></span>
+<span class="font-body-sm text-on-surface font-medium">False Positives Corrected</span>
+</td>
+<td class="py-2 px-space-sm text-right text-on-surface">17</td>
+<td class="py-2 px-space-sm text-right text-secondary font-semibold">1.2%</td>
+<td class="py-2 px-space-sm text-right text-secondary">N/A</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="pt-space-xs border-t border-outline-variant/30 flex items-center justify-between font-code-sm text-code-sm">
+<span class="text-secondary">Audit Trail: In Compliance (FINRA 4511 / SOC2)</span>
+<span class="text-emerald-700 font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">shield</span>
+          Total Capital Preserved: $14.8M
+        </span>
+</div>
+</div>
+</div>
+<!-- Real-time Ensemble Confusion Matrix Section -->
+<div class="bg-surface-container-lowest p-space-lg rounded border border-outline-variant/60 shadow-sm space-y-space-md">
+<div class="flex items-center justify-between border-b border-outline-variant/40 pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary-container text-xl">grid_view</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Empirical Confusion Matrix &amp; Calibration Thresholds</h3>
+<p class="font-body-sm text-body-sm text-secondary">Binary evaluation calculated on 48,200 evaluated telephony audio sessions across rolling 30 days.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm font-code-sm text-code-sm">
+<span class="text-secondary">Selected Probability Threshold:</span>
+<span class="font-bold text-primary-container bg-surface-container px-2 py-0.5 rounded border border-outline-variant/40">p &gt;= 0.880</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-space-md">
+<div class="p-space-md rounded bg-surface-container-low border border-outline-variant/40 space-y-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm text-secondary">
+<span class="uppercase font-semibold">True Positives (TP)</span>
+<span class="text-emerald-700 font-code-sm">Hit Rate: 99.1%</span>
+</div>
+<div class="font-headline-md text-headline-md font-bold text-on-surface font-code-md">1,403</div>
+<p class="font-body-sm text-body-sm text-secondary">Correctly intercepted synthetic voice &amp; replay injection streams.</p>
+</div>
+<div class="p-space-md rounded bg-surface-container-low border border-outline-variant/40 space-y-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm text-secondary">
+<span class="uppercase font-semibold">False Positives (FP)</span>
+<span class="text-amber-700 font-code-sm">Rate: 0.94%</span>
+</div>
+<div class="font-headline-md text-headline-md font-bold text-on-surface font-code-md">17</div>
+<p class="font-body-sm text-body-sm text-secondary">Organic human callers erroneously flagged due to severe line degradation.</p>
+</div>
+<div class="p-space-md rounded bg-surface-container-low border border-outline-variant/40 space-y-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm text-secondary">
+<span class="uppercase font-semibold">True Negatives (TN)</span>
+<span class="text-emerald-700 font-code-sm">Specificity: 99.06%</span>
+</div>
+<div class="font-headline-md text-headline-md font-bold text-on-surface font-code-md">46,767</div>
+<p class="font-body-sm text-body-sm text-secondary">Legitimate customer voice streams cleared without friction or latency.</p>
+</div>
+<div class="p-space-md rounded bg-surface-container-low border border-outline-variant/40 space-y-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm text-secondary">
+<span class="uppercase font-semibold">False Negatives (FN)</span>
+<span class="text-rose-700 font-code-sm">Miss Rate: 0.89%</span>
+</div>
+<div class="font-headline-md text-headline-md font-bold text-on-surface font-code-md">13</div>
+<p class="font-body-sm text-body-sm text-secondary">Synthetic attempts escalated by secondary behavioral rules engine.</p>
+</div>
+</div>
+</div>
+</div></div></main></div></body></html>

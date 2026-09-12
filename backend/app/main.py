@@ -62,3 +62,17 @@ if os.path.isdir(frontend_dir):
         if os.path.exists(index_file):
             return FileResponse(index_file)
         return {"message": "VoiceGuard Gateway API is running. Frontend index.html not found."}
+    @app.get("/overview", include_in_schema=False)
+    @app.get("/screens/overview.html", include_in_schema=False)
+    def serve_overview():
+        return FileResponse(os.path.join(frontend_dir, "screens", "overview.html"))
+
+    @app.get("/live-inspection", include_in_schema=False)
+    @app.get("/screens/live_inspection.html", include_in_schema=False)
+    def serve_live_inspection():
+        return FileResponse(os.path.join(frontend_dir, "screens", "live_inspection.html"))
+
+    @app.get("/analytics", include_in_schema=False)
+    @app.get("/screens/analytics.html", include_in_schema=False)
+    def serve_analytics():
+        return FileResponse(os.path.join(frontend_dir, "screens", "analytics.html"))
