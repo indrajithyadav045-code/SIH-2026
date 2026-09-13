@@ -25,6 +25,13 @@
                 </div>
             </div>
         </div>
+        <nav class="header-nav">
+            <a href="/" class="nav-item active"><span class="material-symbols-outlined nav-icon">dashboard</span> Command Center</a>
+            <a href="/overview" class="nav-item"><span class="material-symbols-outlined nav-icon">security</span> Sentinel SOC</a>
+            <a href="/live-inspection" class="nav-item"><span class="material-symbols-outlined nav-icon">hearing</span> Live Inspection</a>
+            <a href="/analytics" class="nav-item"><span class="material-symbols-outlined nav-icon">analytics</span> Analytics</a>
+            <a href="/docs" target="_blank" class="nav-item"><span class="material-symbols-outlined nav-icon">api</span> API Docs</a>
+        </nav>
         <div class="header-stats">
             <div class="stat-pill">
                 <span class="stat-dot dot-online"></span>
@@ -198,7 +205,18 @@
                 </div>
             </div>
 
-            <!-- Live Testing & Simulation Sandbox -->
+                        <!-- Threat Timeline Section (Step 10 / Step 14) -->
+            <div class="timeline-section">
+                <div class="section-title">
+                    <span class="material-symbols-outlined" style="font-size:16px;vertical-align:middle;margin-right:4px;">timeline</span>
+                    CHRONOLOGICAL THREAT SCORE TIMELINE (REAL ROLLING INFERENCE)
+                </div>
+                <div class="threat-timeline-container" id="threat-timeline-container">
+                    <div class="timeline-empty">Awaiting speech audio stream to populate chronological timeline...</div>
+                </div>
+            </div>
+
+<!-- Live Testing & Simulation Sandbox -->
             <div class="sandbox-section">
                 <div class="section-title">INTERACTIVE GATEWAY SIMULATION & VERIFICATION</div>
                 

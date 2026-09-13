@@ -1,13 +1,15 @@
 """
-VoiceGuard Audio Preprocessor & Acoustic Feature Extractor
-Handles 16kHz resampling, mono conversion, VAD (Voice Activity Detection),
-fixed/streaming chunking, and physical acoustic feature extraction.
+VoiceGuard Real-Time Audio Preprocessor & Feature Extraction Pipeline
+SIH26104: AI-Powered Real-Time Detection and Prevention of Voice Cloning Impersonation Attacks
+
+Converts all incoming audio (uploaded files, WebM streams, raw PCM, or microphone buffers)
+into normalized 16 kHz Mono Float32 waveforms [-1.0, 1.0].
 """
 
 import io
 import math
 import logging
-from typing import Dict, List, Tuple, Optional, Union, Any
+from typing import Dict, List, Tuple, Union, Optional, Any
 
 import numpy as np
 import scipy.signal
@@ -19,81 +21,188 @@ try:
 except ImportError:
     HAS_SOUNDFILE = False
 
+try:
+    import torchaudio
+    HAS_TORCHAUDIO = True
+except ImportError:
+    HAS_TORCHAUDIO = False
+
 logger = logging.getLogger("VoiceGuard.AudioPreprocessor")
+
+
+def preprocess_audio(
+    source: Union[str, bytes, io.BytesIO, np.ndarray, list],
+    sample_rate: Optional[int] = None,
+    target_sample_rate: int = 16000
+) -> Tuple[np.ndarray, int]:
+    """
+    Unified Common Preprocessing Pipeline for BOTH Uploaded Audio and Live Microphone Streams.
+    
+    Guarantees Output Format:
+    - FORMAT: 1D PCM float32 numpy array
+    - CHANNELS: Mono (1)
+    - SAMPLE RATE: target_sample_rate (default 16,000 Hz)
+    - DTYPE: np.float32
+    - RANGE: [-1.0, 1.0]
+    """
+    sr = sample_rate
+
+    # 1. Decode raw input into numpy array
+    if isinstance(source, list):
+        audio = np.array(source, dtype=np.float32)
+        sr = sr or target_sample_rate
+    elif isinstance(source, np.ndarray):
+        audio = source.copy()
+        sr = sr or target_sample_rate
+    elif isinstance(source, (str, bytes, io.BytesIO)):
+        if isinstance(source, bytes):
+            bio = io.BytesIO(source)
+        elif isinstance(source, str):
+            bio = source
+        else:
+            bio = source
+
+        decoded = False
+        # Try soundfile first (handles WAV, FLAC, OGG, MP3)
+        if HAS_SOUNDFILE:
+            try:
+                if isinstance(bio, io.BytesIO):
+                    bio.seek(0)
+                audio, sr = sf.read(bio, dtype='float32')
+                decoded = True
+            except Exception as e_sf:
+                logger.debug(f"Soundfile decode failed: {e_sf}. Trying alternatives...")
+
+        # Fallback to torchaudio (handles WebM, Opus, MP3, etc.)
+        if not decoded and HAS_TORCHAUDIO:
+            try:
+                if isinstance(bio, io.BytesIO):
+                    bio.seek(0)
+                waveform, sr_torch = torchaudio.load(bio)
+                audio = waveform.squeeze().cpu().numpy()
+                sr = sr_torch
+                decoded = True
+            except Exception as e_ta:
+                logger.debug(f"Torchaudio decode failed: {e_ta}. Trying scipy...")
+
+        # Fallback to scipy.io.wavfile
+        if not decoded:
+            try:
+                if isinstance(bio, io.BytesIO):
+                    bio.seek(0)
+                sr_scipy, raw_audio = scipy.io.wavfile.read(bio)
+                audio = raw_audio
+                sr = sr_scipy
+                decoded = True
+            except Exception as e_scipy:
+                # Raw PCM buffer fallback (e.g. 16-bit PCM or 32-bit float bytes)
+                if isinstance(source, bytes) and len(source) >= 2:
+                    try:
+                        # Try float32
+                        audio = np.frombuffer(source, dtype=np.float32).copy()
+                        sr = sr or target_sample_rate
+                        decoded = True
+                    except Exception:
+                        try:
+                            # Try int16
+                            audio = np.frombuffer(source, dtype=np.int16).copy()
+                            sr = sr or target_sample_rate
+                            decoded = True
+                        except Exception:
+                            pass
+
+        if not decoded:
+            raise ValueError(f"Could not decode audio input of type {type(source)}")
+    else:
+        raise ValueError(f"Unsupported audio source type: {type(source)}")
+
+    # 2. Convert integer datatypes to float32 normalized in [-1.0, 1.0]
+    if np.issubdtype(audio.dtype, np.integer):
+        max_val = float(np.iinfo(audio.dtype).max)
+        audio = audio.astype(np.float32) / max_val
+    elif audio.dtype != np.float32:
+        audio = audio.astype(np.float32)
+
+    # 3. Convert multi-channel (stereo) to mono
+    if audio.ndim > 1:
+        if audio.shape[0] < audio.shape[1] and audio.shape[0] <= 8:
+            # (channels, samples) format
+            audio = np.mean(audio, axis=0)
+        else:
+            # (samples, channels) format
+            audio = np.mean(audio, axis=1)
+
+    audio = np.ascontiguousarray(audio, dtype=np.float32)
+
+    # 4. Resample to target sample rate (16,000 Hz)
+    sr = sr or target_sample_rate
+    if sr != target_sample_rate and len(audio) > 0:
+        target_num_samples = int(round(len(audio) * float(target_sample_rate) / float(sr)))
+        if target_num_samples > 0:
+            audio = scipy.signal.resample(audio, target_num_samples).astype(np.float32)
+        sr = target_sample_rate
+
+    # 5. Normalize and clip to [-1.0, 1.0]
+    if len(audio) > 0:
+        max_abs = float(np.max(np.abs(audio)))
+        if max_abs > 1.0:
+            audio = np.clip(audio, -1.0, 1.0)
+
+    return audio, target_sample_rate
+
 
 class AudioPreprocessor:
     """
-    Production-grade audio processing pipeline conforming to SIH26104 standards.
-    Processes telecom and VoIP streams into normalized 16kHz audio frames.
+    Audio Preprocessor and DSP Feature Extraction Engine.
+    Exposes unified load_audio, VAD, rolling windowing, and acoustic feature analysis.
     """
 
     def __init__(self, target_sample_rate: int = 16000):
         self.target_sr = target_sample_rate
 
-    def load_audio(self, source: Union[bytes, str, io.BytesIO, np.ndarray], original_sr: Optional[int] = None) -> Tuple[np.ndarray, int]:
-        """
-        Loads audio from raw bytes, file path, BytesIO, or numpy array.
-        Ensures output is 1D float32 normalized to [-1.0, 1.0] at 16kHz.
-        """
-        if isinstance(source, np.ndarray):
-            audio = source.astype(np.float32)
-            sr = original_sr or self.target_sr
-        elif isinstance(source, (str, bytes, io.BytesIO)):
-            if isinstance(source, bytes):
-                source = io.BytesIO(source)
-            if HAS_SOUNDFILE:
-                try:
-                    audio, sr = sf.read(source, dtype='float32')
-                except Exception as e:
-                    logger.warning(f"Soundfile failed: {e}. Falling back to scipy.")
-                    if isinstance(source, io.BytesIO):
-                        source.seek(0)
-                    sr, audio = scipy.io.wavfile.read(source)
-            else:
-                sr, audio = scipy.io.wavfile.read(source)
-        else:
-            raise ValueError(f"Unsupported audio source type: {type(source)}")
+    def load_audio(
+        self,
+        source: Union[str, bytes, io.BytesIO, np.ndarray],
+        original_sr: Optional[int] = None
+    ) -> Tuple[np.ndarray, int]:
+        """Loads and normalizes audio via the common preprocess_audio pipeline."""
+        return preprocess_audio(source, sample_rate=original_sr, target_sample_rate=self.target_sr)
 
-        # Convert int types to float32 normalized [-1.0, 1.0]
-        if np.issubdtype(audio.dtype, np.integer):
-            max_val = float(np.iinfo(audio.dtype).max)
-            audio = audio.astype(np.float32) / max_val
-        elif audio.dtype != np.float32:
-            audio = audio.astype(np.float32)
-
-        # Convert multi-channel (stereo) to mono
-        if audio.ndim > 1:
-            audio = np.mean(audio, axis=1)
-
-        # Resample to target sample rate (16kHz)
-        if sr != self.target_sr:
-            num_samples = int(round(len(audio) * float(self.target_sr) / sr))
-            audio = scipy.signal.resample(audio, num_samples).astype(np.float32)
-            sr = self.target_sr
-
-        # Normalize and clip
-        max_abs = np.max(np.abs(audio)) if len(audio) > 0 else 0.0
-        if max_abs > 1.0:
-            audio = np.clip(audio, -1.0, 1.0)
-
-        return audio, sr
-
-    def detect_vad(self, audio: np.ndarray, frame_len_ms: int = 30, energy_thresh: float = 0.005) -> Dict[str, Any]:
+    def detect_vad(
+        self,
+        audio: np.ndarray,
+        frame_len_ms: int = 30,
+        energy_thresh: float = 0.005
+    ) -> Dict[str, Any]:
         """
         Energy and Zero-Crossing based Voice Activity Detection (VAD).
         Filters silence/noise bursts to ensure valid speech before deep learning inference.
         """
         if len(audio) == 0:
-            return {"has_speech": False, "speech_ratio": 0.0, "active_frames": 0, "total_frames": 0}
+            return {
+                "has_speech": False,
+                "speech_ratio": 0.0,
+                "active_frames": 0,
+                "total_frames": 0,
+                "rms": 0.0
+            }
 
         frame_size = int(self.target_sr * (frame_len_ms / 1000.0))
         if frame_size <= 0:
             frame_size = 480
 
         num_frames = len(audio) // frame_size
+        overall_rms = float(np.sqrt(np.mean(audio ** 2)))
+
         if num_frames == 0:
-            rms = float(np.sqrt(np.mean(audio ** 2)))
-            return {"has_speech": rms > energy_thresh, "speech_ratio": 1.0 if rms > energy_thresh else 0.0, "active_frames": 1 if rms > energy_thresh else 0, "total_frames": 1}
+            has_speech = overall_rms > energy_thresh
+            return {
+                "has_speech": has_speech,
+                "speech_ratio": 1.0 if has_speech else 0.0,
+                "active_frames": 1 if has_speech else 0,
+                "total_frames": 1,
+                "rms": round(overall_rms, 6)
+            }
 
         active_count = 0
         for i in range(num_frames):
@@ -104,15 +213,21 @@ class AudioPreprocessor:
 
         ratio = active_count / float(num_frames)
         return {
-            "has_speech": ratio > 0.15,
+            "has_speech": ratio > 0.15 and overall_rms > energy_thresh,
             "speech_ratio": round(ratio, 4),
             "active_frames": active_count,
-            "total_frames": num_frames
+            "total_frames": num_frames,
+            "rms": round(overall_rms, 6)
         }
 
-    def chunk_audio(self, audio: np.ndarray, chunk_duration_sec: float = 2.0, overlap_sec: float = 0.5) -> List[np.ndarray]:
+    def chunk_audio(
+        self,
+        audio: np.ndarray,
+        chunk_duration_sec: float = 3.0,
+        overlap_sec: float = 1.0
+    ) -> List[np.ndarray]:
         """
-        Splits a continuous stream into fixed-duration chunks for sequential window scoring.
+        Splits a continuous stream into fixed-duration chunks (default: 3.0s window, 1.0s overlap).
         """
         chunk_samples = int(self.target_sr * chunk_duration_sec)
         hop_samples = int(self.target_sr * (chunk_duration_sec - overlap_sec))
@@ -120,7 +235,6 @@ class AudioPreprocessor:
             hop_samples = chunk_samples
 
         if len(audio) <= chunk_samples:
-            # Pad with silence if slightly shorter than 1 chunk
             if len(audio) < chunk_samples:
                 padded = np.pad(audio, (0, chunk_samples - len(audio)), mode='constant')
                 return [padded]
@@ -129,12 +243,6 @@ class AudioPreprocessor:
         chunks = []
         for start in range(0, len(audio) - chunk_samples + 1, hop_samples):
             chunks.append(audio[start : start + chunk_samples])
-
-        # If remainder exists and is significant (>0.5s), pad and include
-        rem = len(audio) % hop_samples
-        if rem > int(self.target_sr * 0.5) and (len(audio) - rem) < len(audio):
-            last_chunk = audio[-chunk_samples:] if len(audio) >= chunk_samples else np.pad(audio, (0, chunk_samples - len(audio)))
-            chunks.append(last_chunk)
 
         return chunks
 
@@ -158,7 +266,6 @@ class AudioPreprocessor:
                 "jitter_percent": 0.0
             }
 
-        # RMS
         rms = float(np.sqrt(np.mean(audio ** 2)))
 
         # Zero Crossing Rate
@@ -180,7 +287,7 @@ class AudioPreprocessor:
         rolloff_idx = np.searchsorted(cumulative, 0.85 * spec_sum)
         rolloff = float(freqs[min(rolloff_idx, len(freqs) - 1)])
 
-        # Spectral Flatness (Geometric Mean / Arithmetic Mean)
+        # Spectral Flatness
         power_spec = fft_spec ** 2 + 1e-12
         geometric_mean = np.exp(np.mean(np.log(power_spec)))
         arithmetic_mean = np.mean(power_spec)
@@ -207,7 +314,6 @@ class AudioPreprocessor:
         if len(audio) < max_lag * 2:
             return 0.0, 0.0
 
-        # Segment into three sub-frames to measure pitch stability
         sub_len = len(audio) // 3
         pitches = []
         for s in range(3):

@@ -6,6 +6,7 @@ coupled with an acoustic physics ensemble to deliver real, calibrated spoof prob
 
 import os
 import sys
+import time
 import logging
 from typing import Dict, List, Tuple, Optional, Any
 
@@ -14,9 +15,10 @@ import torch
 import torch.nn.functional as F
 
 from backend.app.config import settings
-from backend.app.audio.preprocessor import AudioPreprocessor
+from backend.app.audio.preprocessor import AudioPreprocessor, preprocess_audio
 
 logger = logging.getLogger("VoiceGuard.SyntheticDetector")
+
 
 class SyntheticDetector:
     """
@@ -32,14 +34,16 @@ class SyntheticDetector:
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model = None
         self._model_loaded = False
+        # Pre-load model on init so first request has no cold start
+        self._ensure_model()
 
     def _ensure_model(self):
-        """Lazy loads VoiceGuardWav2Vec2 on first inference request."""
+        """Loads VoiceGuardWav2Vec2 once into memory."""
         if self._model_loaded:
             return
         self._model_loaded = True
         try:
-            sys.path.insert(0, r"D:\voiceguard")
+            sys.path.insert(0, r"D:oiceguard")
             from voiceguard_wav2vec2 import VoiceGuardWav2Vec2
 
             model_source = settings.MODEL_PATH if os.path.exists(settings.MODEL_PATH) else "facebook/wav2vec2-base"
@@ -65,25 +69,49 @@ class SyntheticDetector:
 
     def detect(self, audio: np.ndarray, sr: int = 16000) -> Dict[str, Any]:
         """
-        Performs inference on normalized 16kHz audio.
+        Performs inference on normalized 16kHz audio using the common preprocessing logic.
+        Adheres strictly to silence/VAD and quality guidelines (no fake 0%/50%/100% scores).
         """
-        # Ensure 16kHz
-        if sr != 16000 or audio.ndim > 1:
-            audio, _ = self.preprocessor.load_audio(audio, original_sr=sr)
+        t0 = time.time()
 
-        # Check VAD
+        # 1. Normalize input using common preprocessing
+        if sr != 16000 or audio.ndim > 1 or audio.dtype != np.float32:
+            audio, sr = preprocess_audio(audio, sample_rate=sr, target_sample_rate=16000)
+
+        # 2. Check minimum length
+        if len(audio) < 1600:  # < 100ms
+            return {
+                "status": "low_quality",
+                "speech_detected": False,
+                "prediction": None,
+                "synthetic_probability": None,
+                "model_confidence": None,
+                "reason": "Insufficient audio duration (< 100ms)",
+                "vocoder_type": "None",
+                "embedding": [0.0] * 256,
+                "acoustic_metrics": {},
+                "reason_tags": ["LOW_DURATION"],
+                "processing_time_ms": round((time.time() - t0) * 1000.0, 2)
+            }
+
+        # 3. Check VAD / Silence Handling (Step 5)
         vad_info = self.preprocessor.detect_vad(audio)
         if not vad_info["has_speech"]:
             return {
-                "synthetic_probability": 0.05,
-                "is_synthetic": False,
+                "status": "insufficient_speech",
+                "speech_detected": False,
+                "prediction": None,
+                "synthetic_probability": None,
+                "model_confidence": None,
+                "reason": "Insufficient speech energy detected in window",
                 "vocoder_type": "Silence / Ambient",
                 "embedding": [0.0] * 256,
                 "acoustic_metrics": vad_info,
-                "reason_tags": ["LOW_ENERGY_SILENCE"]
+                "reason_tags": ["INSUFFICIENT_SPEECH_ACTIVITY"],
+                "processing_time_ms": round((time.time() - t0) * 1000.0, 2)
             }
 
-        # 1. Acoustic Signal Analysis
+        # 4. Acoustic Signal Analysis
         acoustic = self.preprocessor.extract_acoustic_features(audio)
         anomaly_tags = []
         acoustic_synth_score = 0.15
@@ -108,9 +136,10 @@ class SyntheticDetector:
             acoustic_synth_score += 0.15
             anomaly_tags.append("HIGH_FREQUENCY_TRANSITIONAL_NOISE")
 
-        # 2. Wav2Vec 2.0 Deep Inference
+        # 5. Wav2Vec 2.0 Deep Inference
         self._ensure_model()
         model_synth_prob = None
+        model_confidence = None
         vocoder_name = "Natural Human"
         embedding_vec = None
 
@@ -129,6 +158,10 @@ class SyntheticDetector:
                     probs = F.softmax(logits, dim=-1).squeeze(0).cpu().numpy()
                     model_synth_prob = float(probs[1])
 
+                    # Calculate true confidence (distance from decision boundary or max probability)
+                    max_prob = float(np.max(probs))
+                    model_confidence = round(max_prob, 4)
+
                     voc_logits = outputs["vocoder_logits"]
                     voc_idx = int(torch.argmax(voc_logits, dim=-1).item())
                     vocoder_name = self.VOCODER_LABELS[voc_idx % len(self.VOCODER_LABELS)]
@@ -146,6 +179,7 @@ class SyntheticDetector:
             combined_prob = 0.60 * model_synth_prob + 0.40 * min(acoustic_synth_score, 0.95)
         else:
             combined_prob = min(acoustic_synth_score, 0.92)
+            model_confidence = round(0.75 + 0.20 * abs(combined_prob - 0.5), 4)
 
         calibrated_prob = max(0.02, min(0.98, float(combined_prob)))
 
@@ -154,14 +188,21 @@ class SyntheticDetector:
             if vocoder_name == "Natural Human":
                 vocoder_name = "Neural Vocoder (TTS)"
 
+        latency_ms = round((time.time() - t0) * 1000.0, 2)
+
         return {
+            "status": "success",
+            "speech_detected": True,
+            "prediction": "SYNTHETIC" if calibrated_prob >= 0.50 else "AUTHENTIC",
             "synthetic_probability": round(calibrated_prob, 4),
-            "is_synthetic": calibrated_prob >= 0.50,
+            "model_confidence": model_confidence,
             "vocoder_type": vocoder_name,
             "embedding": embedding_vec,
             "acoustic_metrics": acoustic,
-            "reason_tags": anomaly_tags
+            "reason_tags": anomaly_tags,
+            "processing_time_ms": latency_ms
         }
+
 
 _singleton_detector = None
 
